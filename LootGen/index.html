@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+   <title>LootGen</title>
+   <meta content="Treasure Generator for D&D 5e" property="og:title">
+   <meta content="Opportunities abound to find treasure, equipment, weapons, armor, and more in the dungeons you explore." property="og:description">
+   <meta content='https://cdn.discordapp.com/attachments/622770430268407828/639509705282027530/loot.png' property='og:image'>
+
+   <link rel="icon" href="./loot.png">
+
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+   <script src="https://kit.fontawesome.com/a6ea1c4316.js" crossorigin="anonymous"></script>
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <script src="lootgen.js"></script>
+   <script src="items.js"></script>
+   <script src="trinkets.js"></script>
+   <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+   <div class="container">
+      <div id="settings">
+
+         <p>Challenge Rating</p>
+         <div class="crBox">
+            <input type="radio" id="0-4" name="challenge" checked>
+            <label for="0-4">0 - 4</label>
+
+            <input type="radio" id="5-10" name="challenge">
+            <label for="5-10">5 - 10</label>
+
+            <input type="radio" id="11-16" name="challenge">
+            <label for="11-16">11 - 16</label>
+
+            <input type="radio" id="17+" name="challenge">
+            <label for="17+">17+</label>
+         </div>
+
+         <br>
+         <p>Coins <ex class="exchange">⇄</ex> Items</p>
+         <div class="crBox">
+            <input type="radio" id="zero" name="percent" onchange="change()" checked>
+            <label for="zero">0%</label>
+
+            <input type="radio" id="half" name="percent" onchange="change()">
+            <label for="half">50%</label>
+
+            <input type="radio" id="full" name="percent" onchange="change()">
+            <label for="full">100%</label>
+         </div>
+         <div id="type" onclick="capnum()" style="display: none;">
+            <p></p>
+            <label class="checkBox">Items
+               <input id="allitems" type="checkbox" onclick="checkall(this);">
+               <label for="allitems"></label>
+               <span class="checkBoxmark"></span>
+            </label>
+
+            <div class="number-input">
+               <input min="1" max="100" id="itemcap" value="1" type="number" onchange="minmax()">
+            </div>
+
+            <p></p>
+
+            <div class="tagBox">
+
+               <input class="itemtags" id="coins" type="checkbox">
+               <label for="coins">Coinage</label>
+
+               <input class="itemtags" id="goods" type="checkbox">
+               <label for="goods">Trade Goods</label>
+
+               <input class="itemtags" id="gear" type="checkbox">
+               <label for="gear">Mundane Gear</label>
+
+               <input class="itemtags" id="magic" type="checkbox">
+               <label for="magic">Magic Items</label>
+
+               <input class="itemtags" id="weapon" type="checkbox">
+               <label for="weapon">Weapons</label>
+
+               <input class="itemtags" id="armor" type="checkbox">
+               <label for="armor">Armor</label>
+
+               <input class="itemtags" id="potion" type="checkbox">
+               <label for="potion">Potions</label>
+
+               <input class="itemtags" id="poison" type="checkbox">
+               <label for="poison">Poisons</label>
+
+               <input class="itemtags" id="gems" type="checkbox">
+               <label for="gems">Gemstones</label>
+
+               <input class="itemtags" id="arts" type="checkbox">
+               <label for="arts">Art Objects</label>
+
+               <input class="itemtags" id="book" type="checkbox">
+               <label for="book">Books</label>
+
+               <input class="itemtags" id="scroll" type="checkbox">
+               <label for="scroll">Scrolls</label>
+
+               <input class="itemtags" id="trinket" type="checkbox">
+               <label for="trinket">Trinkets</label>
+
+            </div>
+         </div>
+      </div>
+      <p></p>
+      <button type="button" class="btn btn-secondary" id="options" onclick="toggleOptions()">Hide Options</button>
+      <br>
+      <button type="button" class="btn btn-warning" id="loot" onclick="MAIN()">Generate Loot</button>
+      <div id="treasuretext" class="textfield" onclick="copyLoot()">
+         <div id="gold"></div>
+         <hr>
+         <div id="items"></div>
+      </div>
+      <br><br>
+   </div>
+</body>
+
+</html>
