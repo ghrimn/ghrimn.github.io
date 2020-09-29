@@ -27,6 +27,261 @@ var itemList =
             cost: 10,
             tags: "coins"
         },
+        
+        //ARMOR
+        {
+            name: "Padded Armor",
+            cost: 5,
+            tags: "armor"
+        },
+        {
+            name: "Leather Armor",
+            cost: 10,
+            tags: "armor"
+        },
+        {
+            name: "Studded Leather Armor",
+            cost: 45,
+            tags: "armor"
+        },
+        {
+            name: "Hide Armor",
+            cost: 10,
+            tags: "armor"
+        },
+        {
+            name: "Chain Shirt",
+            cost: 50,
+            tags: "armor"
+        },
+        {
+            name: "Scale Mail Armor",
+            cost: 50,
+            tags: "armor"
+        },
+        {
+            name: "Breastplate",
+            cost: 400,
+            tags: "armor"
+        },
+        {
+            name: "Half Plate Armor",
+            cost: 750,
+            tags: "armor"
+        },
+        {
+            name: "Ring Mail Armor",
+            cost: 30,
+            tags: "armor"
+        },
+        {
+            name: "Chain Mail Armor",
+            cost: 75,
+            tags: "armor"
+        },
+        {
+            name: "Splint Armor",
+            cost: 400,
+            tags: "armor"
+        },
+        {
+            name: "Plate Armor",
+            cost: 1500,
+            tags: "armor"
+        },
+        {
+            name: "Shield",
+            cost: 10,
+            tags: "armor weapon"
+        },
+        
+        //WEAPON
+        {
+            name: "Club",
+            cost: 0.1,
+            tags: "weapon"
+        },
+        {
+            name: "Dagger",
+            cost: 2,
+            tags: "weapon"
+        },
+        {
+            name: "Greatclub",
+            cost: 0.2,
+            tags: "weapon"
+        },
+        {
+            name: "Handaxe",
+            cost: 5,
+            tags: "weapon"
+        },
+        {
+            name: "Javelin",
+            cost: 0.5,
+            tags: "weapon"
+        },
+        {
+            name: "Light Hammer",
+            cost: 2,
+            tags: "weapon"
+        },
+        {
+            name: "Mace",
+            cost: 5,
+            tags: "weapon"
+        },
+        {
+            name: "Quarterstaff",
+            cost: 0.2,
+            tags: "weapon"
+        },
+        {
+            name: "Sickle",
+            cost: 1,
+            tags: "weapon"
+        },
+        {
+            name: "Spear",
+            cost: 1,
+            tags: "weapon"
+        },
+        {
+            name: "Crossbow, Light",
+            cost: 25,
+            tags: "weapon"
+        },
+        {
+            name: "Dart",
+            cost: 0.05,
+            tags: "weapon"
+        },
+        {
+            name: "Shortbow",
+            cost: 25,
+            tags: "weapon"
+        },
+        {
+            name: "Sling",
+            cost: 0.1,
+            tags: "weapon"
+        },
+        {
+            name: "Battleaxe",
+            cost: 10,
+            tags: "weapon"
+        },
+        {
+            name: "Flail",
+            cost: 10,
+            tags: "weapon"
+        },
+        {
+            name: "Glaive",
+            cost: 20,
+            tags: "weapon"
+        },
+        {
+            name: "Greataxe",
+            cost: 30,
+            tags: "weapon"
+        },
+        {
+            name: "Greatsword",
+            cost: 50,
+            tags: "weapon"
+        },
+        {
+            name: "Halberd",
+            cost: 20,
+            tags: "weapon"
+        },
+        {
+            name: "Lance",
+            cost: 10,
+            tags: "weapon"
+        },
+        {
+            name: "Longsword",
+            cost: 15,
+            tags: "weapon"
+        },
+        {
+            name: "Maul",
+            cost: 10,
+            tags: "weapon"
+        },
+        {
+            name: "Morningstar",
+            cost: 15,
+            tags: "weapon"
+        },
+        {
+            name: "Pike",
+            cost: 5,
+            tags: "weapon"
+        },
+        {
+            name: "Rapier",
+            cost: 25,
+            tags: "weapon"
+        },
+        {
+            name: "Scimitar",
+            cost: 25,
+            tags: "weapon"
+        },
+        {
+            name: "Shortsword",
+            cost: 10,
+            tags: "weapon"
+        },
+        {
+            name: "Trident",
+            cost: 5,
+            tags: "weapon"
+        },
+        {
+            name: "War Pick",
+            cost: 5,
+            tags: "weapon"
+        },
+        {
+            name: "Warhammer",
+            cost: 15,
+            tags: "weapon"
+        },
+        {
+            name: "Whip",
+            cost: 2,
+            tags: "weapon"
+        },
+        {
+            name: "Blowgun",
+            cost: 10,
+            tags: "weapon"
+        },
+        {
+            name: "Crossbow, Hand",
+            cost: 75,
+            tags: "weapon"
+        },
+        {
+            name: "Crossbow, Heavy",
+            cost: 50,
+            tags: "weapon"
+        },
+        {
+            name: "Longbow",
+            cost: 50,
+            tags: "weapon"
+        },
+        {
+            name: "Net",
+            cost: 1,
+            tags: "weapon gear"
+        },
+        
         //MUNDANE GEAR
         {
             name: "Abacus",
@@ -42,11 +297,6 @@ var itemList =
             name: "Alchemist's Fire (flask)",
             cost: 50,
             tags: "gear magic potion"
-        },
-        {
-            name: "Alms Box",
-            cost: 0.01,
-            tags: "gear"
         },
         {
             name: "Arrow",
@@ -74,27 +324,27 @@ var itemList =
             tags: "gear magic potion poison"
         },
         {
-            name: "Crystal, Arcane",
+            name: "Crystal, Focus",
             cost: 10,
             tags: "gear magic"
         },
         {
-            name: "Orb, Arcane",
+            name: "Orb, Focus",
             cost: 20,
             tags: "gear magic"
         },
         {
-            name: "Rod, Arcane",
+            name: "Rod, Focus",
             cost: 10,
             tags: "gear magic"
         },
         {
-            name: "Staff, Arcane",
+            name: "Staff, Focus",
             cost: 5,
             tags: "gear magic"
         },
         {
-            name: "Wand, Arcane",
+            name: "Wand, Focus",
             cost: 10,
             tags: "gear magic"
         },
@@ -104,9 +354,9 @@ var itemList =
             tags: "gear"
         },
         {
-            name: "Ball Bearings (pouch)",
+            name: "Ball Bearings (bag)",
             cost: 1,
-            tags: "gear"
+            tags: "gear weapon"
         },
         {
             name: "Bedroll",
@@ -116,11 +366,6 @@ var itemList =
         {
             name: "Bell",
             cost: 1,
-            tags: "gear"
-        },
-        {
-            name: "Bit and Bridle",
-            cost: 2,
             tags: "gear"
         },
         {
@@ -134,31 +379,6 @@ var itemList =
             tags: "gear"
         },
         {
-            name: "Block of Incense",
-            cost: 0.01,
-            tags: "gear"
-        },
-        {
-            name: "Bomb",
-            cost: 150,
-            tags: "gear weapon"
-        },
-        {
-            name: "Bomb, Fragmentation",
-            cost: 250,
-            tags: "gear weapon"
-        },
-        {
-            name: "Bomb, Smoke",
-            cost: 250,
-            tags: "gear weapon"
-        },
-        {
-            name: "Bomb, Tangler",
-            cost: 250,
-            tags: "gear magic potion"
-        },
-        {
             name: "Book",
             cost: 25,
             tags: "gear book",
@@ -170,7 +390,7 @@ var itemList =
             tags: "gear"
         },
         {
-            name: "Caltrops (pouch)",
+            name: "Caltrops (bag)",
             cost: 1,
             tags: "gear weapon"
         },
@@ -190,17 +410,12 @@ var itemList =
             tags: "gear"
         },
         {
-            name: "Censer",
-            cost: 0.01,
-            tags: "gear"
-        },
-        {
             name: "Chain (10 ft.)",
             cost: 5,
             tags: "gear"
         },
         {
-            name: "Chalk",
+            name: "Chalk (piece)",
             cost: 0.01,
             tags: "gear"
         },
@@ -241,9 +456,54 @@ var itemList =
             tags: "gear"
         },
         {
-            name: "Sprig of Mistletoe",
+            name: "Sprig of Mistletoe, Focus",
             cost: 1,
             tags: "gear magic"
+        },
+        {
+            name: "Totem, Focus",
+            cost: 1,
+            tags: "gear magic"
+        },
+        {
+            name: "Wooden Staff, Focus",
+            cost: 5,
+            tags: "gear magic"
+        },
+        {
+            name: "Yew Wand, Focus",
+            cost: 10,
+            tags: "gear magic"
+        },
+        {
+            name: "Fishing Tackle",
+            cost: 1,
+            tags: "gear"
+        },
+        {
+            name: "Flask",
+            cost: 0.02,
+            tags: "gear potion poison"
+        },
+        {
+            name: "Grappling Hook",
+            cost: 2,
+            tags: "gear"
+        },
+        {
+            name: "Hammer",
+            cost: 1,
+            tags: "gear"
+        },
+        {
+            name: "Hammer, Sledge",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Healer's Kit",
+            cost: 5,
+            tags: "gear"
         },
         
     ];
