@@ -634,7 +634,163 @@ var itemList =
             cost: 50,
             tags: "gear magic potion"
         },
+        {
+            name: "Pouch",
+            cost: 0.5,
+            tags: "gear"
+        },
+        {
+            name: "Quiver",
+            cost: 1,
+            tags: "gear"
+        },
+        {
+            name: "Ram, Portable",
+            cost: 4,
+            tags: "gear weapon"
+        },
+        {
+            name: "Ration",
+            cost: 0.5,
+            tags: "gear"
+        },
+        {
+            name: "Robes",
+            cost: 1,
+            tags: "gear"
+        },
+        {
+            name: "Rope, Hempen (50 ft.)",
+            cost: 1,
+            tags: "gear"
+        },
+        {
+            name: "Rope, Silk (50 ft.)",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Sack",
+            cost: 0.01,
+            tags: "gear"
+        },
+        {
+            name: "Scale, Merchant's",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Sealing Wax",
+            cost: 0.5,
+            tags: "gear"
+        },
+        {
+            name: "Shovel",
+            cost: 2,
+            tags: "gear"
+        },
+        {
+            name: "Signal Whistle",
+            cost: 0.05,
+            tags: "gear"
+        },
+        {
+            name: "Signet Ring",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Soap",
+            cost: 0.02,
+            tags: "gear"
+        },
+        {
+            name: "Spellbook",
+            cost: 50,
+            tags: "gear magic"
+        },
+        {
+            name: "Manacles",
+            cost: 2,
+            tags: "gear"
+        },
+        {
+            name: "Spike, Iron ",
+            cost: 0.1,
+            tags: "gear"
+        },
+        {
+            name: "Spyglass",
+            cost: 1000,
+            tags: "gear"
+        },
+        {
+            name: "Tent, Two-Person",
+            cost: 2,
+            tags: "gear"
+        },
+        {
+            name: "Tinderbox",
+            cost: 0.5,
+            tags: "gear"
+        },
+        {
+            name: "Torch",
+            cost: 0.01,
+            tags: "gear"
+        },
+        {
+            name: "Vial",
+            cost: 1,
+            tags: "gear potion poison"
+        },
+        {
+            name: "Waterskin",
+            cost: 0.2,
+            tags: "gear"
+        },
+        {
+            name: "Whetstone",
+            cost: 0.01,
+            tags: "gear"
+        },
         
+        //EQUIPMENT PACKS
+        {
+            name: "Burglar's Pack",
+            cost: 16,
+            tags: "gear"
+        },
+        {
+            name: "Diplomat's Pack",
+            cost: 39,
+            tags: "gear"
+        },
+        {
+            name: "Dungeoneer's Pack",
+            cost: 12,
+            tags: "gear"
+        },
+        {
+            name: "Entertainer's Pack",
+            cost: 40,
+            tags: "gear"
+        },
+        {
+            name: "Explorer's Pack",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Priest's Pack",
+            cost: 19,
+            tags: "gear"
+        },
+        {
+            name: "Scholar's Pack",
+            cost: 40,
+            tags: "gear"
+        },
         
     ];
 
