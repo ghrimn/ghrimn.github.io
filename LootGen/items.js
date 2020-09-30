@@ -505,6 +505,136 @@ var itemList =
             cost: 5,
             tags: "gear"
         },
+        {
+            name: "Amulet, Focus",
+            cost: 5,
+            tags: "gear magic"
+        },
+        {
+            name: "Emblem, Focus",
+            cost: 5,
+            tags: "gear magic"
+        },
+        {
+            name: "Reliquary, Focus",
+            cost: 5,
+            tags: "gear magic"
+        },
+         {
+            name: "Holy Water (flask)",
+            cost: 25,
+            tags: "gear magic potion"
+        },
+        {
+            name: "Hourglass",
+            cost: 25,
+            tags: "gear magic"
+        },
+        {
+            name: "Hunting Trap",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Ink, Bottle",
+            cost: 10,
+            tags: "gear book"
+        },
+        {
+            name: "Ink Pen",
+            cost: 0.02,
+            tags: "gear book"
+        },
+        {
+            name: "Ladder (10 ft.)",
+            cost: 0.1,
+            tags: "gear"
+        },
+        {
+            name: "Lamp",
+            cost: 0.5,
+            tags: "gear"
+        },
+        {
+            name: "Lantern, Bullseye",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Lantern, Hooded",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Lock",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Magnifying Glass",
+            cost: 100,
+            tags: "gear"
+        },
+        {
+            name: "Manacles",
+            cost: 2,
+            tags: "gear"
+        },
+        {
+            name: "Mess Kit",
+            cost: 0.2,
+            tags: "gear"
+        },
+        {
+            name: "Mirror, Steel",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Oil, (flask)",
+            cost: 0.1,
+            tags: "gear weapon"
+        },
+        {
+            name: "Paper, Sheet",
+            cost: 0.2,
+            tags: "gear book"
+        },
+        {
+            name: "Parchment, Sheet",
+            cost: 0.1,
+            tags: "gear book"
+        },
+        {
+            name: "Perfume (vial)",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Pick, Miner's",
+            cost: 2,
+            tags: "gear"
+        },{
+            name: "Piton",
+            cost: 0.05,
+            tags: "gear"
+        },
+        {
+            name: "Poison, Basic (vial)",
+            cost: 100,
+            tags: "gear poison"
+        },
+        {
+            name: "Pole (10 ft.)",
+            cost: 0.05,
+            tags: "gear"
+        },
+        {
+            name: "Potion of Healing",
+            cost: 50,
+            tags: "gear magic potion"
+        },
+        
         
     ];
 
