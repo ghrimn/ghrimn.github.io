@@ -67,10 +67,10 @@ function toggleOptions() //hide or show options
     }
 }
 
-function discord_message(message) //send message to discord
-{/*
+async function discord_message(message) //send message to discord
+{
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://discordapp.com/api/webhooks/638401815259381762/CQ4VZlkB0La4uzee03m22ns2GPgquaPBA1AOGgRjlBhEcRRLffvTeP9Pde3wIeQtt2Gi", true);
+    xhr.open("POST", "https://discordapp.com/api/webhooks/760510500332109834/zkw18mL8K5WP7gNsT1lXw-pR_N3s3QZsN-yoPUa1Dv_f3DWjTQ79hI54SUBGorzlYDgG", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         "embeds": [{
@@ -78,7 +78,7 @@ function discord_message(message) //send message to discord
             "color": 16777215
         }]
     }));
-*/}
+}
 
 function copyLoot() //copy loot to clipboard
 {

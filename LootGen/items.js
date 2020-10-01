@@ -1,7 +1,15 @@
 // goods, gear, magic, weapon, armor, potion, poison, gems, arts, book, scroll
+
+/*
+        {
+            name: "item",
+            cost: 0,
+            tags: "type"
+        },
+*/
 var itemList =
     [
-        //COINAGE
+        //#region COINAGE 
         {
             name: "cp",
             cost: 0.01,
@@ -27,8 +35,9 @@ var itemList =
             cost: 10,
             tags: "coins"
         },
+        //#endregion
         
-        //ARMOR
+        //#region ARMOR
         {
             name: "Padded Armor",
             cost: 5,
@@ -94,8 +103,9 @@ var itemList =
             cost: 10,
             tags: "armor weapon"
         },
+        //#endregion
         
-        //WEAPON
+        //#region WEAPON
         {
             name: "Club",
             cost: 0.1,
@@ -281,8 +291,9 @@ var itemList =
             cost: 1,
             tags: "weapon gear"
         },
+        //#endregion
         
-        //MUNDANE GEAR
+        //#region MUNDANE GEAR
         {
             name: "Abacus",
             cost: 2,
@@ -754,8 +765,49 @@ var itemList =
             cost: 0.01,
             tags: "gear"
         },
+        {
+            name: "String (10 ft.)",
+            cost: 0.01,
+            tags: "gear"
+        },
+        {
+            name: "Alms Box",
+            cost: 0.01,
+            tags: "gear"
+        },
+        {
+            name: "Block of Incense",
+            cost: 0.01,
+            tags: "gear"
+        },
+        {
+            name: "Censer",
+            cost: 0.01,
+            tags: "type"
+        },
+        {
+            name: "Vestments",
+            cost: 0.01,
+            tags: "gear"
+        },
+        {
+            name: "Chest",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Little Bag of Sand",
+            cost: 0.01,
+            tags: "gear"
+        },
+        {
+            name: "Small Knife",
+            cost: 0.01,
+            tags: "gear"
+        },
+        //#endregion
         
-        //EQUIPMENT PACKS
+        //#region EQUIPMENT PACKS
         {
             name: "Burglar's Pack",
             cost: 16,
@@ -791,6 +843,8 @@ var itemList =
             cost: 40,
             tags: "gear"
         },
+        //#endregion
+
         
     ];
 
