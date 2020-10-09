@@ -612,7 +612,7 @@ var testing = itemList.tags;
 
         {
 
-            while (true)
+            while (chosen_items.length < maxItems)
             {
 
                 if (tries == max_tries) return chosen_items;
