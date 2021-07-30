@@ -66,6 +66,9 @@ function toggleOptions() //hide or show options
 
     }
 }
+var disCoins = `"name": "Coins:","value": document.getElementById("gold").innerHTML.replace(/<br ?\/?>/ig,"\n");,"inline": true`
+var disItems = `"name": "Items:","value": document.getElementById("items").innerHTML.replace(/<br ?\/?>/ig,"\n");,"inline": true`
+var disOther = `"name": "Trinket:","value": document.getElementById("other").innerHTML.replace(/<br ?\/?>/ig,"\n");,"inline": true`
 
 async function discord_message(message) //send message to discord
 {
@@ -73,10 +76,21 @@ async function discord_message(message) //send message to discord
     xhr.open("POST", "https://discordapp.com/api/webhooks/760510500332109834/zkw18mL8K5WP7gNsT1lXw-pR_N3s3QZsN-yoPUa1Dv_f3DWjTQ79hI54SUBGorzlYDgG", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
-        "embeds": [{
-            "description": message,
-            "color": 16777215
-        }]
+        "embeds": [
+            {
+              "fields": [
+                {
+                  disCoins
+                },
+                {
+                  disItems
+                },
+                {
+                  disOther
+                }
+              ]
+            }
+          ]
     }));
 }
 
@@ -432,7 +446,7 @@ var MAIN = function ()
     //#endregion
 
     //#region Filter Items by Type
-var testing = itemList.tags;
+    var testing = itemList.tags;
 
     var found = []; //list of filtered items
     function findInObjArray(tag)
@@ -505,35 +519,13 @@ var testing = itemList.tags;
         {
             findInObjArray("book");
         }
-        if (document.getElementById("scroll").checked == true)
+        if (document.getElementById("food").checked == true)
         {
-            findInObjArray("scroll");
+            findInObjArray("food");
         }
     }
 
     //#endregion
-
-
-    function slotItem()
-    {
-
-        for (var i = 0; i < found.length; i++)
-        {
-            if (found[i].spec == "music")
-            {
-                found[i] = music[Math.floor(Math.random() * music.length)];
-            }
-            if (found[i].spec == "barb")
-            {
-                found[i] = barb[Math.floor(Math.random() * barb.length)];
-            }
-            if (found[i].spec == "text")
-            {
-                found[i].name = text[Math.floor(Math.random() * text.length)] + " (book)";
-            }
-        }
-    }
-
 
     //#region choose random items
 
@@ -578,86 +570,68 @@ var testing = itemList.tags;
     var cap_sum = 0;
     coin_perc = 1 - item_perc; //set coin percentage
 
-
-    //function to only choose N number of items
-    var CAP = function ()
+    function slotItem()
     {
-        do
+        for (var i = 0; i < chosen_items.length; i++)
         {
-            slotItem();
-            if (cap_tries == max_tries) return cap_items;
-            if (cap_sum == max_loot) return cap_items;
-
-            randomitem = found[Math.floor(Math.random() * found.length)];
-            if (cap_sum + randomitem.cost > (max_loot * item_perc).toFixed(2))
+            if (chosen_items[i].spec == "music")
             {
-                cap_tries++;
+                chosen_items[i] = music[Math.floor(Math.random() * music.length)];
             }
-
-            else
+            if (chosen_items[i].spec == "trinket")
             {
-                cap_sum += randomitem.cost;
-                if (!cap_items.find(({ name }) => name === randomitem.name))
-                {
-                    cap_items.push(randomitem);
-                }
+                chosen_items[i].name = trinket[Math.floor(Math.random() * trinket.length)];
             }
-
-        } while (cap_items.length < maxItems);
+            if (chosen_items[i].spec == "lore")
+            {
+                chosen_items[i].name = lore[Math.floor(Math.random() * lore.length)] + " (book)";
+            }
+        }
     }
-
+    
     //function to choose which items will be traded
     var LOOT = function ()
     {
-
+        while (chosen_items.length < maxItems)
         {
+            if (tries == max_tries) return chosen_items;
+            if (loot_sum == max_loot) return chosen_items;
 
-            while (chosen_items.length < maxItems)
+            randomitem = found[Math.floor(Math.random() * found.length)];
+            if (loot_sum + randomitem.cost > (max_loot * item_perc).toFixed(2))
             {
-
-                if (tries == max_tries) return chosen_items;
-                if (loot_sum == max_loot) return chosen_items;
-
-                randomitem1 = cap_items[Math.floor(Math.random() * cap_items.length)];
-                if (loot_sum + randomitem1.cost > (max_loot * item_perc).toFixed(2))
-                {
-                    tries++;
-                }
-                else
-                {
-                    loot_sum += randomitem1.cost;
-                    chosen_items.push(randomitem1);
-                    //console.log(randomitem.name + "\t" + randomitem.cost);
-                    //console.log(Math.round(loot_sum*100)/100);
-                }
+                tries++;
+            }
+            else
+            {
+                loot_sum += randomitem.cost;
+                chosen_items.push(JSON.parse(JSON.stringify(randomitem)));
+                //console.log(randomitem.name + "\t" + randomitem.cost);
+                //console.log(Math.round(loot_sum*100)/100);
             }
         }
-
-
     };
 
 
     //#endregion
 
-    CAP();
     LOOT();
+    slotItem();
 
 
-    console.log(LOOT());
-    console.log("itemlist");
+    console.log("itemlist", itemList);
 
-    console.log(itemList);
-    console.log("found");
+    console.log("found", found);
 
-    console.log(found)
+    console.log("chosenItems", chosen_items)
+
+    console.log("cap_items", cap_items)
 
     //console.log("max_loot");
     //console.log(max_loot);
-    console.log("cap_items")
-    console.log(cap_items);
     //console.log(found[i]);
-    console.log("checkvalue")
-    console.log(checkvalue);
+    //console.log("checkvalue")
+    //console.log(checkvalue);
 
 
 
@@ -667,8 +641,8 @@ var testing = itemList.tags;
         itemQTY[chosen_items[i].name] = (itemQTY[chosen_items[i].name] || 0) + 1;
 
     }
-    //console.log("itemqty")
-    //console.log(itemQTY)
+
+    //console.log("itemQTY", itemQTY)
 
     let costSUM = chosen_items.reduce((uni, sum) =>
     {
@@ -682,8 +656,8 @@ var testing = itemList.tags;
     {
         return { name, cost }
     })
+
     //console.log("testing")
-    //console.log(chosen_items)
     //console.log(itemSUM);
 
     //#region sum item duplicates
@@ -749,6 +723,7 @@ var testing = itemList.tags;
             //#region Item Loot          
 
             document.getElementById("items").innerHTML = ""
+            document.getElementById("other").innerHTML = ""
             var set = 0;
 
             for (var key in itemQTY)
@@ -766,12 +741,12 @@ var testing = itemList.tags;
 
             if (document.getElementById("trinket").checked == true && document.getElementById("zero").checked == false)
             {
-                document.getElementById("items").innerHTML += "<hr>" + trinkets[Math.floor(Math.random() * trinkets.length)];
+                document.getElementById("other").innerHTML += trinket[Math.floor(Math.random() * trinket.length)];
             }
             //#endregion
         }
     }
-
+    
     //console.log(dicebag1)
     //#endregion
     document.getElementById("treasuretext").style.display = "inline-block";

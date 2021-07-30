@@ -1,6 +1,7 @@
-var trinkets =
-    [
-        "value 1",
-        "value 2",
-        "value 3"
-    ]
+var trinket =
+[
+    //Player's Handbook Trinkets
+   
+    `A small idol depicting a nightmarish creature. that gives you unsettling dreams when you sleep near it`,
+   
+]
