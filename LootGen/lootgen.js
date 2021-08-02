@@ -70,6 +70,7 @@ var disCoins = `"name": "Coins:","value": document.getElementById("gold").innerH
 var disItems = `"name": "Items:","value": document.getElementById("items").innerHTML.replace(/<br ?\/?>/ig,"\n");,"inline": true`
 var disOther = `"name": "Trinket:","value": document.getElementById("other").innerHTML.replace(/<br ?\/?>/ig,"\n");,"inline": true`
 
+/* 
 async function discord_message(message) //send message to discord
 {
     var xhr = new XMLHttpRequest();
@@ -78,21 +79,22 @@ async function discord_message(message) //send message to discord
     xhr.send(JSON.stringify({
         "embeds": [
             {
-              "fields": [
-                {
-                  disCoins
-                },
-                {
-                  disItems
-                },
-                {
-                  disOther
-                }
-              ]
+                "fields": [
+                    {
+                        disCoins
+                    },
+                    {
+                        disItems
+                    },
+                    {
+                        disOther
+                    }
+                ]
             }
-          ]
+        ]
     }));
 }
+*/
 
 function copyLoot() //copy loot to clipboard
 {
@@ -446,7 +448,6 @@ var MAIN = function ()
     //#endregion
 
     //#region Filter Items by Type
-    var testing = itemList.tags;
 
     var found = []; //list of filtered items
     function findInObjArray(tag)
@@ -574,21 +575,25 @@ var MAIN = function ()
     {
         for (var i = 0; i < chosen_items.length; i++)
         {
-            if (chosen_items[i].spec == "music")
+            if (chosen_items[i].spec == "lore")
             {
-                chosen_items[i] = music[Math.floor(Math.random() * music.length)];
+                chosen_items[i].name = lore[Math.floor(Math.random() * lore.length)] + " (book)";
+            }
+            if (chosen_items[i].spec == "costume")
+            {
+                chosen_items[i].name = costume[Math.floor(Math.random() * costume.length)] + " Costume";
             }
             if (chosen_items[i].spec == "trinket")
             {
                 chosen_items[i].name = trinket[Math.floor(Math.random() * trinket.length)];
             }
-            if (chosen_items[i].spec == "lore")
+            if (chosen_items[i].spec == "game")
             {
-                chosen_items[i].name = lore[Math.floor(Math.random() * lore.length)] + " (book)";
+                chosen_items[i] = game[Math.floor(Math.random() * game.length)];
             }
         }
     }
-    
+
     //function to choose which items will be traded
     var LOOT = function ()
     {
@@ -604,8 +609,29 @@ var MAIN = function ()
             }
             else
             {
-                loot_sum += randomitem.cost;
-                chosen_items.push(JSON.parse(JSON.stringify(randomitem)));
+
+                if (maxItems - chosen_items.length === 1)
+                {
+                    var last = found.filter(function (item)
+                    {
+                        return item.cost <= (max_loot*item_perc) - loot_sum;
+                    });
+                  
+                    var res = Math.max.apply(Math, last.map(function (o) { return o.cost; }))
+                    var obj = last.find(function (o) { return o.cost == res; })
+                    loot_sum += obj.cost;
+                    chosen_items.push(JSON.parse(JSON.stringify(obj)));
+                }
+                else
+                {
+                    loot_sum += randomitem.cost;
+                    chosen_items.push(JSON.parse(JSON.stringify(randomitem)));
+                    var improve = found.length * 0.1
+                    for (let i = 0; i < improve; i++)
+                    {
+                        found.push(JSON.parse(JSON.stringify(randomitem)));
+                    }
+                }
                 //console.log(randomitem.name + "\t" + randomitem.cost);
                 //console.log(Math.round(loot_sum*100)/100);
             }
@@ -746,7 +772,7 @@ var MAIN = function ()
             //#endregion
         }
     }
-    
+
     //console.log(dicebag1)
     //#endregion
     document.getElementById("treasuretext").style.display = "inline-block";

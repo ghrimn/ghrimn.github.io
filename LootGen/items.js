@@ -1,5 +1,5 @@
 /* 
-        coins, goods, gear, magic, weapon, armor, potion, poison, gems, arts, book, scroll
+        coins, goods, gear, magic, weapon, armor, potion, poison, gems, arts, book, food
 
         {
             name: "name",
@@ -10,7 +10,7 @@
 
 var itemList =
     [
-        //#region COINAGE 
+    //#region COINAGE 
         {
             name: "cp",
             cost: 0.01,
@@ -36,9 +36,353 @@ var itemList =
             cost: 10,
             tags: "coins"
         },
-        //#endregion
-                
-        //#region MUNDANE / ADVENTURING GEAR
+    //#endregion
+         
+    //#region CONTAINERS
+        {
+            name: "Backpack",
+            cost: 2,
+            tags: "gear"
+        },
+        {
+            name: "Barrel",
+            cost: 2,
+            tags: "gear"
+        },
+        {
+            name: "Basket",
+            cost: 0.4,
+            tags: "gear"
+        },
+        {
+            name: "Bucket",
+            cost: 0.05,
+            tags: "gear"
+        },
+        {
+            name: "Chest",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Flask",
+            cost: 0.02,
+            tags: "gear potion poison"
+        },
+        {
+            name: "Glass Bottle",
+            cost: 2,
+            tags: "gear potion poison"
+        },
+        {
+            name: "Iron Pot",
+            cost: 2,
+            tags: "gear"
+        },
+        {
+            name: "Jug",
+            cost: 0.02,
+            tags: "gear"
+        },
+        {
+            name: "Pitcher",
+            cost: 0.02,
+            tags: "gear"
+        },
+        {
+            name: "Pouch",
+            cost: 0.5,
+            tags: "gear"
+        },
+        {
+            name: "Sack",
+            cost: 0.01,
+            tags: "gear"
+        },
+        {
+            name: "Tankard",
+            cost: 0.02,
+            tags: "gear"
+        },
+        {
+            name: "Vial",
+            cost: 1,
+            tags: "gear potion poison"
+        },
+        {
+            name: "Waterskin",
+            cost: 0.2,
+            tags: "gear"
+        },
+    //#endregion
+    
+    //#region AMMUNITION
+        {
+            name: "Arrow",
+            cost: 0.05,
+            tags: "gear weapon"
+        },
+        {
+            name: "Arrows (20)",
+            cost: 1,
+            tags: "gear weapon"
+        },
+        {
+            name: "Blowgun Needle",
+            cost: 0.02,
+            tags: "gear weapon"
+        },
+        {
+            name: "Blowgun Needles (50)",
+            cost: 1,
+            tags: "gear weapon"
+        },
+        {
+            name: "Crossbow Bolt",
+            cost: 0.05,
+            tags: "gear weapon"
+        },
+        {
+            name: "Crossbow Bolts (20)",
+            cost: 1,
+            tags: "gear weapon"
+        },
+        {
+            name: "Sling Bullet",
+            cost: 0.002,
+            tags: "gear weapon"
+        },
+        {
+            name: "Sling Bullets (20)",
+            cost: 0.04,
+            tags: "gear weapon"
+        },
+    //#endregion
+
+    //#region ARTISAN'S TOOLS
+        {
+            name: "Alchemist's Supplies",
+            cost: 50,
+            tags: "gear magic potion"
+        },
+        {
+            name: "Brewer's Supplies",
+            cost: 20,
+            tags: "gear food"
+        },
+        {
+            name: "Calligrapher's Supplies",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Carpenter's Tools",
+            cost: 8,
+            tags: "gear"
+        },
+        {
+            name: "Cartographer's Tools",
+            cost: 15,
+            tags: "gear"
+        },
+        {
+            name: "Cobbler's Tools",
+            cost: 5,
+            tags: "gear"
+        },
+        {
+            name: "Cook's Utensils",
+            cost: 1,
+            tags: "gear food"
+        },
+        {
+            name: "Glassblower's Tools",
+            cost: 30,
+            tags: "gear"
+        },
+        {
+            name: "Jeweler's Tools",
+            cost: 25,
+            tags: "gear"
+        },
+        {
+            name: "Leatherworker's Tools",
+            cost: 5,
+            tags: "gear armor"
+        },
+        {
+            name: "Mason's Tools",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Painter's Supplies",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Potter's Tools",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Smith's Tools",
+            cost: 20,
+            tags: "gear weapon armor"
+        },
+        {
+            name: "Tinker's Tools",
+            cost: 50,
+            tags: "gear"
+        },
+        {
+            name: "Weaver's Tools",
+            cost: 1,
+            tags: "gear armor"
+        },
+        {
+            name: "Woodcarver's Tools",
+            cost: 1,
+            tags: "gear weapon armor"
+        },
+        {
+            name: "Enchanter's Tools",
+            cost: 50,
+            tags: "gear magic"
+        },
+        {
+            name: "Spellscribe's Tools",
+            cost: 50,
+            tags: "gear magic"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+        {
+            name: "name",
+            cost: 000,
+            tags: "tags"
+        },
+
+
+    //#endregion
+
+    //#region EQUIPMENT PACKS
+        {
+            name: "Burglar's Pack",
+            cost: 16,
+            tags: "gear"
+        },
+        {
+            name: "String (10 feet)",
+            cost: 0.1,
+            tags: "gear"
+        },
+        {
+            name: "Diplomat's Pack",
+            cost: 39,
+            tags: "gear"
+        },
+        {
+            name: "Dungeoneer's Pack",
+            cost: 12,
+            tags: "gear"
+        },
+        {
+            name: "Entertainer's Pack",
+            cost: 40,
+            tags: "gear"
+        },
+        {
+            name: "Explorer's Pack",
+            cost: 10,
+            tags: "gear"
+        },
+        {
+            name: "Priest's Pack",
+            cost: 19,
+            tags: "gear"
+        },
+        {
+            name: "Alms Box",
+            cost: 0.1,
+            tags: "gear"
+        },
+        {
+            name: "Block of Incense",
+            cost: 0.1,
+            tags: "gear"
+        },
+        {
+            name: "Censer",
+            cost: 0.1,
+            tags: "gear"
+        },
+        {
+            name: "Vestments",
+            cost: 0.1,
+            tags: "gear"
+        },
+        {
+            name: "Scholar's Pack",
+            cost: 40,
+            tags: "gear book"
+        },
+        {
+            name: "Little Bag of Sand",
+            cost: 0.1,
+            tags: "gear book"
+        },
+        {
+            name: "Small Knife",
+            cost: 0.1,
+            tags: "gear"
+        },
+    //#endregion
+        
+    //#region ADVENTURING GEAR
         {
             name: "Abacus",
             cost: 2,
@@ -60,11 +404,6 @@ var itemList =
             tags: "gear magic potion poison"
         },
         {
-            name: "Backpack",
-            cost: 2,
-            tags: "gear"
-        },
-        {
             name: "Ball Bearing",
             cost: 0.001,
             tags: "gear weapon"
@@ -73,16 +412,6 @@ var itemList =
             name: "Ball Bearings (bag of 1,000)",
             cost: 1,
             tags: "gear weapon"
-        },
-        {
-            name: "Barrel",
-            cost: 2,
-            tags: "gear"
-        },
-        {
-            name: "Basket",
-            cost: 0.4,
-            tags: "gear"
         },
         {
             name: "Bedroll",
@@ -116,23 +445,8 @@ var itemList =
             tags: "gear book",
         },
         {
-            name: "Bucket",
-            cost: 0.05,
-            tags: "gear"
-        },
-        {
             name: "Bullseye Lantern",
             cost: 10,
-            tags: "gear"
-        },
-        {
-            name: "Burglar's Pack",
-            cost: 16,
-            tags: "gear"
-        },
-        {
-            name: "String (10 feet)",
-            cost: 0.1,
             tags: "gear"
         },
         {
@@ -158,11 +472,6 @@ var itemList =
         {
             name: "Chalk (1 piece)",
             cost: 0.01,
-            tags: "gear"
-        },
-        {
-            name: "Chest",
-            cost: 5,
             tags: "gear"
         },
         {
@@ -197,26 +506,6 @@ var itemList =
             tags: "gear"
         },
         {
-            name: "Diplomat's Pack",
-            cost: 39,
-            tags: "gear"
-        },
-        {
-            name: "Dungeoneer's Pack",
-            cost: 12,
-            tags: "gear"
-        },
-        {
-            name: "Entertainer's Pack",
-            cost: 40,
-            tags: "gear"
-        },
-        {
-            name: "Explorer's Pack",
-            cost: 10,
-            tags: "gear"
-        },
-        {
             name: "Fine Clothes",
             cost: 15,
             tags: "gear"
@@ -225,16 +514,6 @@ var itemList =
             name: "Fishing Tackle",
             cost: 1,
             tags: "gear"
-        },
-        {
-            name: "Flask",
-            cost: 0.02,
-            tags: "gear potion poison"
-        },
-        {
-            name: "Glass Bottle",
-            cost: 2,
-            tags: "gear potion poison"
         },
         {
             name: "Grappling Hook",
@@ -287,11 +566,6 @@ var itemList =
             tags: "gear book"
         },
         {
-            name: "Iron Pot",
-            cost: 2,
-            tags: "gear"
-        },
-        {
             name: "Iron Spike",
             cost: 0.1,
             tags: "gear"
@@ -299,11 +573,6 @@ var itemList =
         {
             name: "Iron Spikes (10)",
             cost: 1,
-            tags: "gear"
-        },
-        {
-            name: "Jug",
-            cost: 0.02,
             tags: "gear"
         },
         {
@@ -372,11 +641,6 @@ var itemList =
             tags: "gear potion"
         },
         {
-            name: "Pitcher",
-            cost: 0.02,
-            tags: "gear"
-        },
-        {
             name: "Piton",
             cost: 0.05,
             tags: "gear"
@@ -392,36 +656,6 @@ var itemList =
             tags: "gear weapon"
         },
         {
-            name: "Pouch",
-            cost: 0.5,
-            tags: "gear"
-        },
-        {
-            name: "Priest's Pack",
-            cost: 19,
-            tags: "gear"
-        },
-        {
-            name: "Alms Box",
-            cost: 0.1,
-            tags: "gear"
-        },
-        {
-            name: "Block of Incense",
-            cost: 0.1,
-            tags: "gear"
-        },
-        {
-            name: "Censer",
-            cost: 0.1,
-            tags: "gear"
-        },
-        {
-            name: "Vestments",
-            cost: 0.1,
-            tags: "gear"
-        },
-        {
             name: "Quiver",
             cost: 1,
             tags: "gear weapon"
@@ -434,26 +668,6 @@ var itemList =
         {
             name: "Robes",
             cost: 1,
-            tags: "gear"
-        },
-        {
-            name: "Sack",
-            cost: 0.01,
-            tags: "gear"
-        },
-        {
-            name: "Scholar's Pack",
-            cost: 40,
-            tags: "gear book"
-        },
-        {
-            name: "Little Bag of Sand",
-            cost: 0.1,
-            tags: "gear book"
-        },
-        {
-            name: "Small Knife",
-            cost: 0.1,
             tags: "gear"
         },
         {
@@ -507,11 +721,6 @@ var itemList =
             tags: "gear"
         },
         {
-            name: "Tankard",
-            cost: 0.02,
-            tags: "gear"
-        },
-        {
             name: "Tinderbox",
             cost: 0.5,
             tags: "gear"
@@ -538,16 +747,6 @@ var itemList =
             tags: "gear"
         },
         {
-            name: "Vial",
-            cost: 1,
-            tags: "gear potion poison"
-        },
-        {
-            name: "Waterskin",
-            cost: 0.2,
-            tags: "gear"
-        },
-        {
             name: "Whetstone",
             cost: 0.01,
             tags: "gear weapon"
@@ -558,37 +757,11 @@ var itemList =
             tags: "gear magic poison"
         },
         {
-            name: "Arrow",
-            cost: 0.05,
-            tags: "gear weapon"
+            name: "TESTING",
+            cost: 1000,
+            tags: "gear magic poison"
         },
-        {
-            name: "Arrows (20)",
-            cost: 1,
-            tags: "gear weapon"
-        },
-        {
-            name: "Blowgun Needle",
-            cost: 0.02,
-            tags: "gear weapon"
-        },
-        {
-            name: "Blowgun Needles (50)",
-            cost: 1,
-            tags: "gear weapon"
-        },
-        {
-            name: "Crossbow Bolt",
-            cost: 0.05,
-            tags: "gear weapon"
-        },
-        {
-            name: "Crossbow Bolts (20)",
-            cost: 1,
-            tags: "gear weapon"
-        },
-
-        //#endregion
+    //#endregion
         
         //#region WEAPON
         
@@ -598,9 +771,43 @@ var itemList =
         
         //#endregion
         
-        //#region EQUIPMENT PACKS
-
-        //#endregion
+    //#region FOOD & DRINKS
+        {
+            name: "Ale (Gallon)",
+            cost: 0.2,
+            tags: "food"
+        },
+        {
+            name: "Ale (Mug)",
+            cost: 0.04,
+            tags: "food"
+        },
+        {
+            name: "Chunk of Meat",
+            cost: 0.3,
+            tags: "food"
+        },
+        {
+            name: "Common Wine (Pitcher)",
+            cost: 0.2,
+            tags: "food"
+        },
+        {
+            name: "Fine Wine (Bottle)",
+            cost: 10,
+            tags: "food"
+        },
+        {
+            name: "Hunk of Cheese",
+            cost: 0.1,
+            tags: "food"
+        },
+        {
+            name: "Loaf of Bread",
+            cost: 0.02,
+            tags: "food"
+        },
+    //#endregion
         
         //#region BACKGROUNDS
 
@@ -614,9 +821,13 @@ var itemList =
         "hello tetsing here",
     ]
 
-    var costume = 
+    var game = 
     [
-
+        {
+            name: "Deck Poison (vial)",
+            cost: 100,
+            tags: "gear magic poison"
+        },
     ]
 
     
