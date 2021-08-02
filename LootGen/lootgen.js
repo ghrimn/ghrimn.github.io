@@ -614,13 +614,16 @@ var MAIN = function ()
                 {
                     var last = found.filter(function (item)
                     {
-                        return item.cost <= (max_loot*item_perc) - loot_sum;
+                        return item.cost <= (max_loot * item_perc) - loot_sum;
                     });
-                  
-                    var res = Math.max.apply(Math, last.map(function (o) { return o.cost; }))
-                    var obj = last.find(function (o) { return o.cost == res; })
-                    loot_sum += obj.cost;
-                    chosen_items.push(JSON.parse(JSON.stringify(obj)));
+
+
+                    var lastCost = Math.max.apply(Math, last.map(function (o) { return o.cost; }))
+
+                    var lastOpt = last.filter(x => x.cost === lastCost);
+                    lastItem = lastOpt[Math.floor(Math.random() * lastOpt.length)];
+                    loot_sum += lastItem.cost;
+                    chosen_items.push(JSON.parse(JSON.stringify(lastItem)));
                 }
                 else
                 {
