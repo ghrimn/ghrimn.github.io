@@ -74,7 +74,7 @@ var disOther = `"name": "Trinket:","value": document.getElementById("other").inn
 async function discord_message(message) //send message to discord
 {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://discordapp.com/api/webhooks/760510500332109834/zkw18mL8K5WP7gNsT1lXw-pR_N3s3QZsN-yoPUa1Dv_f3DWjTQ79hI54SUBGorzlYDgG", true);
+    xhr.open("POST", "", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         "embeds": [
