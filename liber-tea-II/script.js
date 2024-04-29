@@ -65,7 +65,7 @@ function selectRandom() {
                     default:
                         color = "black";
                 }
-                outputDiv.innerHTML += "<li style='color: " + color + "'>" + option.name + " - Category: " + option.category + "</li>";
+                outputDiv.innerHTML += "<li style='color: " + color + "'>" + option.name + " - Category: " + option.tags + "</li>";
             });
             outputDiv.innerHTML += "</ul>";
         })
