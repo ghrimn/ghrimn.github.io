@@ -1,0 +1,65 @@
+{
+  "offense": [
+    { "name": "Eagle Airstrike"},
+    { "name": "Eagle Cluster Bomb"},
+    { "name": "Eagle Napalm Airstrike"},
+    { "name": "Eagle Smoke Strike"},
+    { "name": "Eagle Strafing Run"},
+    { "name": "Eagle 110mm Rocket Pods"},
+    { "name": "Eagle 500kg Bomb"},
+    { "name": "Orbital 120mm HE Barrage"},
+    { "name": "Orbital 380mm HE Barrage"},
+    { "name": "Orbital Airburst Strike"},
+    { "name": "Orbital Gas Strike"},
+    { "name": "Orbital Gatling Barrage"},
+    { "name": "Orbital Laser"},
+    { "name": "Orbital Precision Strike"},
+    { "name": "Orbital Railcannon Strike"},
+    { "name": "Orbital Smoke Strike"},
+    { "name": "Orbital EMS Strike"},
+    { "name": "Orbital Walking Barrage"}
+  ],
+  "defense": [
+    { "name": "A/AC-8 Autocannon Sentry"},
+    { "name": "A/ARC-3 Tesla Tower"},
+    { "name": "A/G-16 Gatling Sentry"},
+    { "name": "A/M-12 Mortar Sentry"},
+    { "name": "A/M-23 EMS Mortar Sentry"},
+    { "name": "A/MG-43 Machine Gun Sentry"},
+    { "name": "E/MG-101 HMG Emplacement"},
+    { "name": "FX-12 Shield Generator Relay"},
+    { "name": "MD-6 Anti-Personnel Minefield"},
+    { "name": "MD-I4 Incendiary Mines"}
+  ],
+  "support": {
+    "weapons": [
+      { "name": "ARC-3 Arc Thrower", "tags": ["weapon"] },
+      { "name": "EAT-17 Expendable Anti-Tank", "tags": ["weapon"] },
+      { "name": "FLAM-40 Flamethrower", "tags": ["weapon"] },
+      { "name": "GL-21 Grenade Launcher", "tags": ["weapon"] },
+      { "name": "LAS-98 Laser Cannon", "tags": ["weapon"] },
+      { "name": "LAS-99 Quasar Cannon", "tags": ["weapon"] },
+      { "name": "MG-206 Heavy Machine Gun", "tags": ["weapon"] },
+      { "name": "MG-43 Machine Gun", "tags": ["weapon"] },
+      { "name": "M-105 Stalwart", "tags": ["weapon"] },
+      { "name": "RS-422 Railgun", "tags": ["weapon"] }
+    ],
+    "backpacks": [
+      { "name": "AX/AR-23 'Guard Dog'", "tags": ["backpack"] },
+      { "name": "AX/LAS-5 'Guard Dog' Rover", "tags": ["backpack"] },
+      { "name": "B-1 Supply Pack", "tags": ["backpack"] },
+      { "name": "SH-20 Ballistic Shield Backpack", "tags": ["backpack"] },
+      { "name": "SH-32 Shield Generator Pack", "tags": ["backpack"] },
+      { "name": "Lift-850 Jump Pack", "tags": ["backpack"] }
+    ],
+    "packweapons": [
+      { "name": "GR-8 Recoilless Rifle", "tags": ["backpack", "weapon"] },
+      { "name": "AC-8 Autocannon", "tags": ["backpack", "weapon"] },
+      { "name": "RL-77 Airburst Rocket Launcher", "tags": ["backpack", "weapon"] },
+      { "name": "FAF-14 Spear", "tags": ["backpack", "weapon"] }
+    ]
+  },
+  "vehicle": [
+    { "name": "EXO-45 Patriot Exosuit"}
+  ]
+}
