@@ -130,10 +130,6 @@ document.getElementById('generateButton').addEventListener('click', function () 
   displayAbilities(selectedAbilities);
 });
 
-function getAvailableRules(rules, selectedAbilities) {
-  return rules.filter((rule) => selectedAbilities.some((ability) => rule.abilities.includes(ability.name)));
-}
-
 function checkRules(ability_type, backpackAdded, weaponryAdded) {
   let result = false;
   if (ability_type === 'Weaponry') {
@@ -185,7 +181,7 @@ function displayAbilities(abilities) {
     const div = document.createElement('div');
     div.classList.add('icon');
     var imagePath = `img/${ability.id}.webp`; // Construct image path
-    div.innerHTML = `<img src="${imagePath}" alt="${ability.name}" onclick="individualGeneration('${ability.id}')">`;
+    div.innerHTML = `<img src="${imagePath}" alt="${ability.name}" title="${ability.name}" onclick="individualGeneration('${ability.id}')">`;
     container.appendChild(div);
   });
 }
