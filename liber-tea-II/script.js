@@ -1,60 +1,60 @@
 const abilities = [
   // Offensive
-  { name: 'Eagle 500kg Bomb', type: 'Offense' },
-  { name: 'Orbital Gatling Barrage', type: 'Offense' },
-  { name: 'Eagle Airstrike', type: 'Offense' },
-  { name: 'Orbital Walking Barrage', type: 'Offense' },
-  { name: 'Eagle Strafing Run', type: 'Offense' },
-  { name: 'Orbital EMS Strike', type: 'Offense' },
-  { name: 'Eagle Smoke Strike', type: 'Offense' },
-  { name: 'Orbital Gas Strike', type: 'Offense' },
-  { name: 'Orbital Railcannon Strike', type: 'Offense' },
-  { name: 'Eagle Cluster Bomb', type: 'Offense' },
-  { name: 'Orbital Smoke Strike', type: 'Offense' },
-  { name: 'Orbital Airburst Strike', type: 'Offense' },
-  { name: 'Orbital Laser', type: 'Offense' },
-  { name: 'Orbital Precision Strike', type: 'Offense' },
-  { name: 'Orbital 380mm HE Barrage', type: 'Offense' },
-  { name: 'Eagle Napalm Airstrike', type: 'Offense' },
-  { name: 'Orbital 120mm HE Barrage', type: 'Offense' },
-  { name: 'Eagle 110mm Rocket Pods', type: 'Offense' },
+  { id: 'Eagle500kgBomb', name: 'Eagle 500kg Bomb', type: 'Offense' },
+  { id: 'OrbitalGatlingBarrage', name: 'Orbital Gatling Barrage', type: 'Offense' },
+  { id: 'EagleAirstrike', name: 'Eagle Airstrike', type: 'Offense' },
+  { id: 'OrbitalWalkingBarrage', name: 'Orbital Walking Barrage', type: 'Offense' },
+  { id: 'EagleStrafingRun', name: 'Eagle Strafing Run', type: 'Offense' },
+  { id: 'OrbitalEMSStrike', name: 'Orbital EMS Strike', type: 'Offense' },
+  { id: 'EagleSmokeStrike', name: 'Eagle Smoke Strike', type: 'Offense' },
+  { id: 'OrbitalGasStrike', name: 'Orbital Gas Strike', type: 'Offense' },
+  { id: 'OrbitalRailcannonStrike', name: 'Orbital Railcannon Strike', type: 'Offense' },
+  { id: 'EagleClusterBomb', name: 'Eagle Cluster Bomb', type: 'Offense' },
+  { id: 'OrbitalSmokeStrike', name: 'Orbital Smoke Strike', type: 'Offense' },
+  { id: 'OrbitalAirburstStrike', name: 'Orbital Airburst Strike', type: 'Offense' },
+  { id: 'OrbitalLaser', name: 'Orbital Laser', type: 'Offense' },
+  { id: 'OrbitalPrecisionStrike', name: 'Orbital Precision Strike', type: 'Offense' },
+  { id: 'Orbital380mmHEBarrage', name: 'Orbital 380mm HE Barrage', type: 'Offense' },
+  { id: 'EagleNapalmAirstrike', name: 'Eagle Napalm Airstrike', type: 'Offense' },
+  { id: 'Orbital120mmHEBarrage', name: 'Orbital 120mm HE Barrage', type: 'Offense' },
+  { id: 'Eagle110mmRocketPods', name: 'Eagle 110mm Rocket Pods', type: 'Offense' },
 
   // Support Weapons
-  { name: 'M-105 Stalwart', type: 'Weaponry' },
-  { name: 'AC-8 Autocannon', type: 'Ammopack' },
-  { name: 'EXO-45 Patriot Exosuit', type: 'Vehicle' },
-  { name: 'MG-206 Heavy Machine Gun', type: 'Weaponry' },
-  { name: 'SH-32 Shield Generator Pack', type: 'Backpack' },
-  { name: 'RL-77 Airburst Rocket Launcher', type: 'Ammopack' },
-  { name: 'RS-422 Railgun', type: 'Weaponry' },
-  { name: 'LAS-98 Laser Cannon', type: 'Weaponry' },
-  { name: 'ARC-3 Arc Thrower', type: 'Weaponry' },
-  { name: "AX/AR-23 'Guard Dog'", type: 'Backpack' },
-  { name: 'FAF-14 Spear', type: 'Ammopack' },
-  { name: 'GL-21 Grenade Launcher', type: 'Weaponry' },
-  { name: 'MG-43 Machine Gun', type: 'Weaponry' },
-  { name: 'SH-20 Ballistic Shield Backpack', type: 'Backpack' },
-  { name: 'B-1 Supply Pack', type: 'Backpack' },
-  { name: 'FLAM-40 Flamethrower', type: 'Weaponry' },
-  { name: "AX/LAS-5 'Guard Dog' Rover", type: 'Backpack' },
-  { name: 'GR-8 Recoilless Rifle', type: 'Ammopack' },
-  { name: 'Lift-850 Jump Pack', type: 'Backpack' },
-  { name: 'APW-1 Anti-Materiel Rifle', type: 'Weaponry' },
-  { name: 'EAT-17 Expendable Anti-Tank', type: 'Weaponry' },
-  { name: 'LAS-99 Quasar Cannon', type: 'Weaponry' },
+  { id: 'M105Stalwart', name: 'M-105 Stalwart', type: 'Weaponry' },
+  { id: 'AC8Autocannon', name: 'AC-8 Autocannon', type: 'Ammopack' },
+  { id: 'EXO45PatriotExosuit', name: 'EXO-45 Patriot Exosuit', type: 'Vehicle' },
+  { id: 'MG206HeavyMachineGun', name: 'MG-206 Heavy Machine Gun', type: 'Weaponry' },
+  { id: 'SH32ShieldGeneratorPack', name: 'SH-32 Shield Generator Pack', type: 'Backpack' },
+  { id: 'RL77AirburstRocketLauncher', name: 'RL-77 Airburst Rocket Launcher', type: 'Ammopack' },
+  { id: 'RS422Railgun', name: 'RS-422 Railgun', type: 'Weaponry' },
+  { id: 'LAS98LaserCannon', name: 'LAS-98 Laser Cannon', type: 'Weaponry' },
+  { id: 'ARC3ArcThrower', name: 'ARC-3 Arc Thrower', type: 'Weaponry' },
+  { id: 'AXAR23GuardDog', name: "AX/AR-23 'Guard Dog'", type: 'Backpack' },
+  { id: 'FAF14Spear', name: 'FAF-14 Spear', type: 'Ammopack' },
+  { id: 'GL21GrenadeLauncher', name: 'GL-21 Grenade Launcher', type: 'Weaponry' },
+  { id: 'MG43MachineGun', name: 'MG-43 Machine Gun', type: 'Weaponry' },
+  { id: 'SH20BallisticShieldBackpack', name: 'SH-20 Ballistic Shield Backpack', type: 'Backpack' },
+  { id: 'B1SupplyPack', name: 'B-1 Supply Pack', type: 'Backpack' },
+  { id: 'FLAM40Flamethrower', name: 'FLAM-40 Flamethrower', type: 'Weaponry' },
+  { id: 'AXLAS5GuardDogRover', name: "AX/LAS-5 'Guard Dog' Rover", type: 'Backpack' },
+  { id: 'GR8RecoillessRifle', name: 'GR-8 Recoilless Rifle', type: 'Ammopack' },
+  { id: 'Lift850JumpPack', name: 'Lift-850 Jump Pack', type: 'Backpack' },
+  { id: 'APW1AntiMaterielRifle', name: 'APW-1 Anti-Materiel Rifle', type: 'Weaponry' },
+  { id: 'EAT17ExpendableAntiTank', name: 'EAT-17 Expendable Anti-Tank', type: 'Weaponry' },
+  { id: 'LAS99QuasarCannon', name: 'LAS-99 Quasar Cannon', type: 'Weaponry' },
 
   // Defensive
-  { name: 'FX-12 Shield Generator Relay', type: 'Defense' },
-  { name: 'A/M-23 EMS Mortar Sentry', type: 'Defense' },
-  { name: 'A/MLS-4X Rocket Sentry', type: 'Defense' },
-  { name: 'A/G-16 Gatling Sentry', type: 'Defense' },
-  { name: 'A/ARC-3 Tesla Tower', type: 'Defense' },
-  { name: 'A/M-12 Mortar Sentry', type: 'Defense' },
-  { name: 'MD-6 Anti-Personnel Minefield', type: 'Defense' },
-  { name: 'A/MG-43 Machine Gun Sentry', type: 'Defense' },
-  { name: 'A/AC-8 Autocannon Sentry', type: 'Defense' },
-  { name: 'MD-I4 Incendiary Mines', type: 'Defense' },
-  { name: 'E/MG-101 HMG Emplacement', type: 'Defense' },
+  { id: 'FX12ShieldGeneratorRelay', name: 'FX-12 Shield Generator Relay', type: 'Defense' },
+  { id: 'AM23EMSMortarSentry', name: 'A/M-23 EMS Mortar Sentry', type: 'Defense' },
+  { id: 'AMLS4XRocketSentry', name: 'A/MLS-4X Rocket Sentry', type: 'Defense' },
+  { id: 'AG16GatlingSentry', name: 'A/G-16 Gatling Sentry', type: 'Defense' },
+  { id: 'AARC3TeslaTower', name: 'A/ARC-3 Tesla Tower', type: 'Defense' },
+  { id: 'AM12MortarSentry', name: 'A/M-12 Mortar Sentry', type: 'Defense' },
+  { id: 'MD6AntiPersonnelMinefield', name: 'MD-6 Anti-Personnel Minefield', type: 'Defense' },
+  { id: 'AMG43MachineGunSentry', name: 'A/MG-43 Machine Gun Sentry', type: 'Defense' },
+  { id: 'AAC8AutocannonSentry', name: 'A/AC-8 Autocannon Sentry', type: 'Defense' },
+  { id: 'MDI4IncendiaryMines', name: 'MD-I4 Incendiary Mines', type: 'Defense' },
+  { id: 'EMG101HMGEmplacement', name: 'E/MG-101 HMG Emplacement', type: 'Defense' },
 ];
 
 let selectedAbilitiesState = abilities.reduce((acc, ability) => {
@@ -173,19 +173,16 @@ function displayAbilities(abilities) {
     div.classList.add('icon');
     var imageName = ability.name.replace(/[^a-z0-9]/gi, '') + '.webp'; // Derive image name from item name
     var imagePath = 'img/' + imageName; // Construct image path
-    div.innerHTML = `<img src="${imagePath}" alt="${ability.name}" onclick="individualGeneration('${ability.name}')">`;
+    div.innerHTML = `<img src="${imagePath}" alt="${ability.name}" onclick="individualGeneration('${ability.id}')">`;
     container.appendChild(div);
   });
 }
 
-function individualGeneration(ability_name) {
-  console.log('🚀 ~ individualGeneration ~ ability_name:', ability_name);
-  console.log('🚀 ~ individualGeneration ~ selectedAbilities:', selectedAbilities);
+function individualGeneration(ability_id) {
   const availableAbilities = getAvailableAbilities().filter(function (ability) {
-    return ability.name !== ability_name || !selectedAbilities.includes(ability);
+    return ability.id !== ability_id && !selectedAbilities.includes(ability);
   });
-
   const new_ability = getRandomAbilities(availableAbilities, 1);
-  selectedAbilities = selectedAbilities.map((ability) => (ability.name === ability_name ? new_ability[0] : ability));
+  selectedAbilities = selectedAbilities.map((ability) => (ability.id === ability_id ? new_ability[0] : ability));
   displayAbilities(selectedAbilities);
 }
