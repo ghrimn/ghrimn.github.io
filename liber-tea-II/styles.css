@@ -1,0 +1,77 @@
+.container {
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.loadout-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.icon img {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #b97309;
+    border-radius: 5px;
+    max-width: 100px;
+}
+.abilities-container {
+    display: flex;
+    justify-content: center;
+}
+.abilities-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 50px; /* Adjust the space between groups */
+}
+.abilities-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.ability-icon {
+    flex: 0 1 auto;
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+    
+}
+.ability-icon:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+.ability-icon.unselected {
+    filter: brightness(50%);
+    opacity: 0.5;
+    border: 2px solid #1e1e1e
+}
+
+.ability-icon.selected {
+    filter: brightness(100%);
+    border: 2px solid #b97309
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color:#1e1e1e;
+    color: #ffffffff;
+}
+
+h1, h2 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgba(80, 80, 80, 0.7);
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
