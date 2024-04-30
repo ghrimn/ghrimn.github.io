@@ -182,7 +182,7 @@ function individualGeneration(ability_name) {
   console.log('🚀 ~ individualGeneration ~ ability_name:', ability_name);
   console.log('🚀 ~ individualGeneration ~ selectedAbilities:', selectedAbilities);
   const availableAbilities = getAvailableAbilities().filter(function (ability) {
-    return ability.name !== ability_name;
+    return ability.name !== ability_name || !selectedAbilities.includes(ability);
   });
 
   const new_ability = getRandomAbilities(availableAbilities, 1);
