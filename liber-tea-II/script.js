@@ -130,42 +130,55 @@ document.getElementById('generateButton').addEventListener('click', function () 
   displayAbilities(selectedAbilities);
 });
 
-function getRandomAbilities(abilities, count) {
+function getAvailableRules(rules, selectedAbilities) {
+  return rules.filter((rule) => selectedAbilities.some((ability) => rule.abilities.includes(ability.name)));
+}
+
+function checkRules(ability_type, backpackAdded, weaponryAdded) {
+  let result = false;
+  if (ability_type === 'Weaponry') {
+    result = weaponryAdded == false;
+    weaponryAdded = true;
+  } else if (ability_type === 'Backpack') {
+    result = backpackAdded == false;
+    backpackAdded = true;
+  } else if (ability_type === 'Ammopack') {
+    backpackAdded = true;
+    weaponryAdded = true;
+    result = backpackAdded == false && weaponryAdded == false;
+  } else {
+    result = true;
+  }
+  return [result, backpackAdded, weaponryAdded];
+}
+
+function getRandomAbilities(abilities, count, selected = []) {
   let shuffled = abilities.sort(() => 0.5 - Math.random());
-  let result = [];
   let weaponryAdded = false;
   let backpackAdded = false;
+  let result = false;
+  let randomAbilities = [];
+  for (let ability of selected) {
+    [result, backpackAdded, weaponryAdded] = checkRules(ability.type, backpackAdded, weaponryAdded);
+    if (!result) console.log('🚀 ~ getRandomAbilities ~ selected arrays is not using expected rules ~ result:', result);
+  }
   for (let ability of shuffled) {
-    if (result.length >= count) break;
-    if (ability.type === 'Weaponry') {
-      if (!weaponryAdded) {
-        result.push(ability);
-        weaponryAdded = true;
-      }
-    } else if (ability.type === 'Backpack') {
-      if (!backpackAdded) {
-        result.push(ability);
-        backpackAdded = true;
-      }
-    } else if (ability.type === 'Ammopack') {
-      if (!backpackAdded && !weaponryAdded) {
-        result.push(ability);
-        backpackAdded = true;
-        weaponryAdded = true;
-      }
-    } else {
-      result.push(ability);
+    [result, backpackAdded, weaponryAdded] = checkRules(ability.type, backpackAdded, weaponryAdded);
+    if (result) randomAbilities.push(ability);
+    if (randomAbilities.length >= count) break;
+  }
+
+  if (randomAbilities.length < count) {
+    shuffled = shuffled.filter((ability) => !randomAbilities.includes(ability));
+    while (result.length < count) {
+      randomAbilities.push(shuffled.shift());
     }
   }
-  shuffled = shuffled.filter((ability) => !result.includes(ability));
-  while (result.length < count) {
-    result.push(shuffled.shift());
-  }
-  return result;
+
+  return randomAbilities;
 }
 
 function displayAbilities(abilities) {
-  console.log('🚀 ~ displayAbilities ~ abilities:', abilities);
   const container = document.getElementById('loadoutDisplay');
   container.innerHTML = ''; // Clear previous abilities
   abilities.forEach((ability) => {
@@ -182,7 +195,10 @@ function individualGeneration(ability_id) {
   const availableAbilities = getAvailableAbilities().filter(function (ability) {
     return ability.id !== ability_id && !selectedAbilities.includes(ability);
   });
-  const new_ability = getRandomAbilities(availableAbilities, 1);
+  const alreadyUsedAbilities = selectedAbilities.filter(function (ability) {
+    return ability.id !== ability_id;
+  });
+  const new_ability = getRandomAbilities(availableAbilities, 1, alreadyUsedAbilities);
   selectedAbilities = selectedAbilities.map((ability) => (ability.id === ability_id ? new_ability[0] : ability));
   displayAbilities(selectedAbilities);
 }
