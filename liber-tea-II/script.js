@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to create ability icons
   function createAbilityIcon(ability) {
     const abilityIcon = document.createElement('img');
-    abilityIcon.src = 'img/' + ability.name.replace(/[^a-z0-9]/gi, '') + '.webp';
+    abilityIcon.src = `img/${ability.id}.webp`;
     abilityIcon.alt = ability.name;
     abilityIcon.title = ability.name;
     abilityIcon.classList.add('ability-icon', 'selected');
@@ -171,8 +171,7 @@ function displayAbilities(abilities) {
   abilities.forEach((ability) => {
     const div = document.createElement('div');
     div.classList.add('icon');
-    var imageName = ability.name.replace(/[^a-z0-9]/gi, '') + '.webp'; // Derive image name from item name
-    var imagePath = 'img/' + imageName; // Construct image path
+    var imagePath = `img/${ability.id}.webp`; // Construct image path
     div.innerHTML = `<img src="${imagePath}" alt="${ability.name}" onclick="individualGeneration('${ability.id}')">`;
     container.appendChild(div);
   });
