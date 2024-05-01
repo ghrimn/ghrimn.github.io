@@ -194,6 +194,6 @@ function individualGeneration(ability_id) {
     return ability.id !== ability_id;
   });
   const new_ability = getRandomAbilities(availableAbilities, 1, alreadyUsedAbilities);
-  selectedAbilities = selectedAbilities.map((ability) => (ability.id === ability_id ? new_ability[0] : ability));
+  if (new_ability.length) selectedAbilities = selectedAbilities.map((ability) => (ability.id === ability_id ? new_ability[0] : ability));
   displayAbilities(selectedAbilities);
 }
