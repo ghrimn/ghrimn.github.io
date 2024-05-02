@@ -156,8 +156,10 @@ function displayStratagems(stratagems) {
 
 function individualGeneration(stratagem_id) {
   const availableStratagems = getAvailableStratagems().filter(function (stratagem) {
-    return stratagem.id !== stratagem_id && !selectedStratagems.includes(stratagem);
+    return !selectedStratagems.includes(stratagem);
   });
+  if (availableStratagems.length === 0) return;
+
   const alreadyUsedStratagems = selectedStratagems.filter(function (stratagem) {
     return stratagem.id !== stratagem_id;
   });
