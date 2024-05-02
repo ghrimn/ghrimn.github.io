@@ -100,14 +100,16 @@ function checkRules(stratagem_type, backpackAdded, weaponryAdded) {
   let result = false;
   if (stratagem_type === 'Weaponry') {
     result = weaponryAdded == false;
-    weaponryAdded = true;
+    if (result) weaponryAdded = true;
   } else if (stratagem_type === 'Backpack') {
     result = backpackAdded == false;
-    backpackAdded = true;
+    if (result) backpackAdded = true;
   } else if (stratagem_type === 'Ammopack') {
-    backpackAdded = true;
-    weaponryAdded = true;
     result = backpackAdded == false && weaponryAdded == false;
+    if (result) {
+      backpackAdded = true;
+      weaponryAdded = true;
+    }
   } else {
     result = true;
   }
