@@ -1,94 +1,93 @@
-let selectedAbilitiesState = [];
-let selectedAbilities = [];
+//#region STRATAGEM GENERATOR
+
+let selectedStratagemsState = {};
+let selectedStratagems = [];
 
 function initializeCookies() {
   // initialize selectedAbilitiesState
-  let value = JSON.parse(docCookies.getItem('selectedAbilitiesState'));
-  console.log('🚀 ~ initializeCookies ~ value:', value);
+  let value = JSON.parse(docCookies.getItem('selectedStratagemsState'));
 
   if (value) {
-    console.log('🚀 ~ initializeCookies ~ value:', value);
-    selectedAbilitiesState = value;
+    selectedStratagemsState = value;
   } else {
-    selectedAbilitiesState = abilities.reduce((acc, ability) => {
-      acc[ability.name] = true; // Initialize all abilities as selected
+    selectedStratagemsState = stratagems.reduce((acc, stratagem) => {
+      acc[stratagem.name] = true; // Initialize all stratagems as selected
       return acc;
     }, {});
   }
-  console.log('🚀 ~ selectedAbilitiesState=abilities.reduce ~ selectedAbilitiesState:', selectedAbilitiesState);
 }
 
 initializeCookies();
 
 document.addEventListener('DOMContentLoaded', function () {
-  const abilitiesContainer = document.querySelector('.abilities-container');
+  const stratagemsContainer = document.querySelector('.stratagems-container');
 
-  // Separate abilities into three groups
-  const offenseAbilities = abilities.filter((ability) => ability.type === 'Offense');
-  const supportAbilities = abilities.filter((ability) => ['Weaponry', 'Ammopack', 'Backpack', 'Vehicle'].includes(ability.type));
-  const defenseAbilities = abilities.filter((ability) => ability.type === 'Defense');
+  // Separate stratagems into three groups
+  const offenseStratagems = stratagems.filter((stratagem) => stratagem.type === 'Offense');
+  const supportStratagems = stratagems.filter((stratagem) => ['Weaponry', 'Ammopack', 'Backpack', 'Vehicle'].includes(stratagem.type));
+  const defenseStratagems = stratagems.filter((stratagem) => stratagem.type === 'Defense');
 
-  // Function to create ability icons
-  function createAbilityIcon(ability) {
-    const abilityIcon = document.createElement('img');
-    abilityIcon.src = `img/${ability.id}.webp`;
-    abilityIcon.alt = ability.name;
-    abilityIcon.title = ability.name;
-    abilityIcon.classList.add('ability-icon', 'selected');
-    if (!selectedAbilitiesState[ability.name]) {
-      abilityIcon.classList.toggle('selected');
-      abilityIcon.classList.toggle('unselected');
+  // Function to create stratagem icons
+  function createStratagemIcon(stratagem) {
+    const stratagemIcon = document.createElement('img');
+    stratagemIcon.src = `strats/${stratagem.id}.webp`;
+    stratagemIcon.alt = stratagem.name;
+    stratagemIcon.title = stratagem.name;
+    stratagemIcon.classList.add('stratagem-icon', 'selected');
+    if (!selectedStratagemsState[stratagem.name]) {
+      stratagemIcon.classList.toggle('selected');
+      stratagemIcon.classList.toggle('unselected');
     }
-    abilityIcon.addEventListener('click', function () {
-      selectedAbilitiesState[ability.name] = !selectedAbilitiesState[ability.name];
-      docCookies.setItem('selectedAbilitiesState', JSON.stringify(selectedAbilitiesState));
-      abilityIcon.classList.toggle('selected');
-      abilityIcon.classList.toggle('unselected');
+    stratagemIcon.addEventListener('click', function () {
+      selectedStratagemsState[stratagem.name] = !selectedStratagemsState[stratagem.name];
+      docCookies.setItem('selectedStratagemsState', JSON.stringify(selectedStratagemsState));
+      stratagemIcon.classList.toggle('selected');
+      stratagemIcon.classList.toggle('unselected');
     });
-    return abilityIcon;
+    return stratagemIcon;
   }
 
-  // Function to display abilities container
-  function displayAbilitiesContainer(abilities, container, title) {
-    const abilitiesGroup = document.createElement('div');
-    abilitiesGroup.classList.add('abilities-group');
+  // Function to display stratagems container
+  function displayStratagemsContainer(stratagems, container, title) {
+    const stratagemsGroup = document.createElement('div');
+    stratagemsGroup.classList.add('stratagems-group');
 
     // Title for the group
     const titleElement = document.createElement('h3');
     titleElement.textContent = title;
-    abilitiesGroup.appendChild(titleElement);
+    stratagemsGroup.appendChild(titleElement);
 
-    // Display abilities for the group
+    // Display stratagems for the group
     let count = 0;
-    let abilitiesRow = null;
-    abilities.forEach((ability) => {
+    let stratagemsRow = null;
+    stratagems.forEach((stratagem) => {
       if (count % 4 === 0) {
-        abilitiesRow = document.createElement('div');
-        abilitiesRow.classList.add('abilities-row');
-        abilitiesGroup.appendChild(abilitiesRow);
+        stratagemsRow = document.createElement('div');
+        stratagemsRow.classList.add('stratagems-row');
+        stratagemsGroup.appendChild(stratagemsRow);
       }
-      const abilityIcon = createAbilityIcon(ability);
-      abilitiesRow.appendChild(abilityIcon);
+      const stratagemIcon = createStratagemIcon(stratagem);
+      stratagemsRow.appendChild(stratagemIcon);
       count++;
     });
 
-    container.appendChild(abilitiesGroup);
+    container.appendChild(stratagemsGroup);
   }
 
-  // Display abilities container for each group with title
-  displayAbilitiesContainer(offenseAbilities, abilitiesContainer, 'Offense');
-  displayAbilitiesContainer(supportAbilities, abilitiesContainer, 'Support');
-  displayAbilitiesContainer(defenseAbilities, abilitiesContainer, 'Defense');
+  // Display stratagems container for each group with title
+  displayStratagemsContainer(offenseStratagems, stratagemsContainer, 'Offense');
+  displayStratagemsContainer(supportStratagems, stratagemsContainer, 'Support');
+  displayStratagemsContainer(defenseStratagems, stratagemsContainer, 'Defense');
 });
 
-function getAvailableAbilities() {
-  return abilities.filter((ability) => selectedAbilitiesState[ability.name]);
+function getAvailableStratagems() {
+  return stratagems.filter((stratagem) => selectedStratagemsState[stratagem.name]);
 }
 
 document.getElementById('generateButton').addEventListener('click', function () {
-  const availableAbilities = getAvailableAbilities();
-  selectedAbilities = getRandomAbilities(availableAbilities, 4);
-  displayAbilities(selectedAbilities);
+  const availableStratagems = getAvailableStratagems();
+  selectedStratagems = getRandomStratagems(availableStratagems, 4);
+  displayStratagems(selectedStratagems);
 });
 
 document.getElementById('clearCookies').addEventListener('click', function () {
@@ -97,15 +96,15 @@ document.getElementById('clearCookies').addEventListener('click', function () {
   }
 });
 
-function checkRules(ability_type, backpackAdded, weaponryAdded) {
+function checkRules(stratagem_type, backpackAdded, weaponryAdded) {
   let result = false;
-  if (ability_type === 'Weaponry') {
+  if (stratagem_type === 'Weaponry') {
     result = weaponryAdded == false;
     weaponryAdded = true;
-  } else if (ability_type === 'Backpack') {
+  } else if (stratagem_type === 'Backpack') {
     result = backpackAdded == false;
     backpackAdded = true;
-  } else if (ability_type === 'Ammopack') {
+  } else if (stratagem_type === 'Ammopack') {
     backpackAdded = true;
     weaponryAdded = true;
     result = backpackAdded == false && weaponryAdded == false;
@@ -115,52 +114,112 @@ function checkRules(ability_type, backpackAdded, weaponryAdded) {
   return [result, backpackAdded, weaponryAdded];
 }
 
-function getRandomAbilities(abilities, count, selected = []) {
-  let shuffled = abilities.sort(() => 0.5 - Math.random());
+function getRandomStratagems(stratagems, count, selected = []) {
+  let shuffled = stratagems.sort(() => 0.5 - Math.random());
   let weaponryAdded = false;
   let backpackAdded = false;
   let result = false;
-  let randomAbilities = [];
-  for (let ability of selected) {
-    [result, backpackAdded, weaponryAdded] = checkRules(ability.type, backpackAdded, weaponryAdded);
-    if (!result) console.log('🚀 ~ getRandomAbilities ~ selected arrays is not using expected rules ~ result:', result);
+  let randomStratagems = [];
+  for (let stratagem of selected) {
+    [result, backpackAdded, weaponryAdded] = checkRules(stratagem.type, backpackAdded, weaponryAdded);
+    if (!result) console.log('🚀 ~ getRandomStratagems ~ selected arrays is not using expected rules ~ result:', result);
   }
-  for (let ability of shuffled) {
-    [result, backpackAdded, weaponryAdded] = checkRules(ability.type, backpackAdded, weaponryAdded);
-    if (result) randomAbilities.push(ability);
-    if (randomAbilities.length >= count) break;
+  for (let stratagem of shuffled) {
+    [result, backpackAdded, weaponryAdded] = checkRules(stratagem.type, backpackAdded, weaponryAdded);
+    if (result) randomStratagems.push(stratagem);
+    if (randomStratagems.length >= count) break;
   }
 
-  if (randomAbilities.length < count) {
-    shuffled = shuffled.filter((ability) => !randomAbilities.includes(ability));
-    while (result.length < count) {
-      randomAbilities.push(shuffled.shift());
+  if (randomStratagems.length < count) {
+    shuffled = shuffled.filter((stratagem) => !randomStratagems.includes(stratagem));
+    while (randomStratagems.length < count) {
+      randomStratagems.push(shuffled.shift());
     }
   }
 
-  return randomAbilities;
+  return randomStratagems;
 }
 
-function displayAbilities(abilities) {
+function displayStratagems(stratagems) {
   const container = document.getElementById('loadoutDisplay');
-  container.innerHTML = ''; // Clear previous abilities
-  abilities.forEach((ability) => {
+  container.innerHTML = ''; // Clear previous stratagems
+  stratagems.forEach((stratagem) => {
     const div = document.createElement('div');
     div.classList.add('icon');
-    var imagePath = `img/${ability.id}.webp`; // Construct image path
-    div.innerHTML = `<img src="${imagePath}" alt="${ability.name}" title="${ability.name}" onclick="individualGeneration('${ability.id}')">`;
+    var imagePath = `strats/${stratagem.id}.webp`; // Construct image path
+    div.innerHTML = `<img src="${imagePath}" alt="${stratagem.name}" title="${stratagem.name}" onclick="individualGeneration('${stratagem.id}')">`;
     container.appendChild(div);
   });
 }
 
-function individualGeneration(ability_id) {
-  const availableAbilities = getAvailableAbilities().filter(function (ability) {
-    return ability.id !== ability_id && !selectedAbilities.includes(ability);
+function individualGeneration(stratagem_id) {
+  const availableStratagems = getAvailableStratagems().filter(function (stratagem) {
+    return stratagem.id !== stratagem_id && !selectedStratagems.includes(stratagem);
   });
-  const alreadyUsedAbilities = selectedAbilities.filter(function (ability) {
-    return ability.id !== ability_id;
+  const alreadyUsedStratagems = selectedStratagems.filter(function (stratagem) {
+    return stratagem.id !== stratagem_id;
   });
-  const new_ability = getRandomAbilities(availableAbilities, 1, alreadyUsedAbilities);
-  if (new_ability.length) selectedAbilities = selectedAbilities.map((ability) => (ability.id === ability_id ? new_ability[0] : ability));
-  displayAbilities(selectedAbilities);
+  const new_stratagem = getRandomStratagems(availableStratagems, 1, alreadyUsedStratagems);
+  if (new_stratagem.length) selectedStratagems = selectedStratagems.map((stratagem) => (stratagem.id === stratagem_id ? new_stratagem[0] : stratagem));
+  displayStratagems(selectedStratagems);
 }
+//#endregion
+
+//#region EQUIPMENT GENERATOR
+// Function to select a random item from the items array
+function selectRandomItem(items) {
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+// Function to generate loadout
+function generateArmoryLoadout() {
+  /*  document.getElementById("primary-weapon").textContent = "";
+    document.getElementById("secondary-weapon").textContent = "";
+    document.getElementById("grenade").textContent = "";
+    document.getElementById("booster").textContent = "";*/
+  document.getElementById('armor-set').textContent = '';
+
+  var selectedWarbonds = [];
+  // Get selected warbonds
+  selectedWarbonds.push('Standard Issue');
+  if (document.getElementById('warbond0-checkbox').checked) selectedWarbonds.push('Super Citizen');
+  if (document.getElementById('warbond1-checkbox').checked) selectedWarbonds.push('Helldivers Mobilize');
+  if (document.getElementById('warbond2-checkbox').checked) selectedWarbonds.push('Steeled Veterans');
+  if (document.getElementById('warbond3-checkbox').checked) selectedWarbonds.push('Cutting Edge');
+  if (document.getElementById('warbond4-checkbox').checked) selectedWarbonds.push('Democratic Detonation');
+
+  // Filter items based on selected warbonds
+  var availableItems = [];
+  for (const warbond of selectedWarbonds) {
+    const items = itemsByWarbond.find((item) => item.warbond === warbond);
+    if (items) availableItems = availableItems.concat(items.items);
+  }
+
+  // Generate loadout based on available items
+  const primaryWeapons = availableItems.filter((item) => item.type === 'primary');
+  const secondaryWeapons = availableItems.filter((item) => item.type === 'secondary');
+  const grenades = availableItems.filter((item) => item.type === 'grenade');
+  const armorSets = availableItems.filter((item) => item.type === 'armor');
+  const boosters = availableItems.filter((item) => item.type === 'booster');
+
+  /* document.getElementById("primary-weapon").textContent = selectRandomItem(primaryWeapons).name;
+   document.getElementById("secondary-weapon").textContent = selectRandomItem(secondaryWeapons).name;
+   document.getElementById("grenade").textContent = selectRandomItem(grenades).name;
+   document.getElementById("armor-set").textContent = selectRandomItem(armorSets).name;
+   document.getElementById("booster").textContent = selectRandomItem(boosters).name;*/
+
+  document.getElementById('primary-weapon').src = getImageSource(selectRandomItem(primaryWeapons));
+  document.getElementById('secondary-weapon').src = getImageSource(selectRandomItem(secondaryWeapons));
+  document.getElementById('grenade').src = getImageSource(selectRandomItem(grenades));
+  document.getElementById('booster').src = getImageBSource(selectRandomItem(boosters));
+  document.getElementById('armor-set').textContent = selectRandomItem(armorSets).name;
+}
+
+function getImageSource(item) {
+  return `eqpts/${item.name.replace(/[^a-zA-Z0-9]/g, '')}.webp`;
+}
+
+function getImageBSource(item) {
+  return `bstrs/${item.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
+}
+//#endregion
