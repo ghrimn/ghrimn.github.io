@@ -1,11 +1,23 @@
 //#region STRATAGEM GENERATOR
 
-let selectedStratagemsState = stratagems.reduce((acc, stratagem) => {
-  acc[stratagem.name] = true; // Initialize all stratagems as selected
-  return acc;
-}, {});
-
+let selectedStratagemsState = {};
 let selectedStratagems = [];
+
+function initializeCookies() {
+  // initialize selectedAbilitiesState
+  let value = JSON.parse(docCookies.getItem('selectedStratagemsState'));
+
+  if (value) {
+    selectedStratagemsState = value;
+  } else {
+    selectedStratagemsState = stratagems.reduce((acc, stratagem) => {
+      acc[stratagem.name] = true; // Initialize all stratagems as selected
+      return acc;
+    }, {});
+  }
+}
+
+initializeCookies();
 
 document.addEventListener('DOMContentLoaded', function () {
   const stratagemsContainer = document.querySelector('.stratagems-container');
@@ -22,8 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
     stratagemIcon.alt = stratagem.name;
     stratagemIcon.title = stratagem.name;
     stratagemIcon.classList.add('stratagem-icon', 'selected');
+    if (!selectedStratagemsState[stratagem.name]) {
+      stratagemIcon.classList.toggle('selected');
+      stratagemIcon.classList.toggle('unselected');
+    }
     stratagemIcon.addEventListener('click', function () {
       selectedStratagemsState[stratagem.name] = !selectedStratagemsState[stratagem.name];
+      docCookies.setItem('selectedStratagemsState', JSON.stringify(selectedStratagemsState));
       stratagemIcon.classList.toggle('selected');
       stratagemIcon.classList.toggle('unselected');
     });
@@ -71,6 +88,12 @@ document.getElementById('generateButton').addEventListener('click', function () 
   const availableStratagems = getAvailableStratagems();
   selectedStratagems = getRandomStratagems(availableStratagems, 4);
   displayStratagems(selectedStratagems);
+});
+
+document.getElementById('clearCookies').addEventListener('click', function () {
+  for (key of docCookies.keys()) {
+    docCookies.removeItem(key);
+  }
 });
 
 function checkRules(stratagem_type, backpackAdded, weaponryAdded) {
