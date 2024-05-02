@@ -1,4 +1,4 @@
-//#region STRATAGEM GENERATOR 
+//#region STRATAGEM GENERATOR
 
 let selectedStratagemsState = stratagems.reduce((acc, stratagem) => {
   acc[stratagem.name] = true; // Initialize all stratagems as selected
@@ -109,7 +109,7 @@ function getRandomStratagems(stratagems, count, selected = []) {
 
   if (randomStratagems.length < count) {
     shuffled = shuffled.filter((stratagem) => !randomStratagems.includes(stratagem));
-    while (result.length < count) {
+    while (randomStratagems.length < count) {
       randomStratagems.push(shuffled.shift());
     }
   }
@@ -140,12 +140,7 @@ function individualGeneration(stratagem_id) {
   if (new_stratagem.length) selectedStratagems = selectedStratagems.map((stratagem) => (stratagem.id === stratagem_id ? new_stratagem[0] : stratagem));
   displayStratagems(selectedStratagems);
 }
-//#endregion 
-
-
-
-
-
+//#endregion
 
 //#region EQUIPMENT GENERATOR
 // Function to select a random item from the items array
@@ -155,36 +150,34 @@ function selectRandomItem(items) {
 
 // Function to generate loadout
 function generateArmoryLoadout() {
-
   /*  document.getElementById("primary-weapon").textContent = "";
     document.getElementById("secondary-weapon").textContent = "";
     document.getElementById("grenade").textContent = "";
     document.getElementById("booster").textContent = "";*/
-    document.getElementById("armor-set").textContent = "";
-
+  document.getElementById('armor-set').textContent = '';
 
   var selectedWarbonds = [];
   // Get selected warbonds
-  selectedWarbonds.push("Standard Issue");
-  if (document.getElementById("warbond0-checkbox").checked) selectedWarbonds.push("Super Citizen");
-  if (document.getElementById("warbond1-checkbox").checked) selectedWarbonds.push("Helldivers Mobilize");
-  if (document.getElementById("warbond2-checkbox").checked) selectedWarbonds.push("Steeled Veterans");
-  if (document.getElementById("warbond3-checkbox").checked) selectedWarbonds.push("Cutting Edge");
-  if (document.getElementById("warbond4-checkbox").checked) selectedWarbonds.push("Democratic Detonation");
+  selectedWarbonds.push('Standard Issue');
+  if (document.getElementById('warbond0-checkbox').checked) selectedWarbonds.push('Super Citizen');
+  if (document.getElementById('warbond1-checkbox').checked) selectedWarbonds.push('Helldivers Mobilize');
+  if (document.getElementById('warbond2-checkbox').checked) selectedWarbonds.push('Steeled Veterans');
+  if (document.getElementById('warbond3-checkbox').checked) selectedWarbonds.push('Cutting Edge');
+  if (document.getElementById('warbond4-checkbox').checked) selectedWarbonds.push('Democratic Detonation');
 
   // Filter items based on selected warbonds
   var availableItems = [];
   for (const warbond of selectedWarbonds) {
-    const items = itemsByWarbond.find(item => item.warbond === warbond);
+    const items = itemsByWarbond.find((item) => item.warbond === warbond);
     if (items) availableItems = availableItems.concat(items.items);
   }
 
   // Generate loadout based on available items
-  const primaryWeapons = availableItems.filter(item => item.type === "primary");
-  const secondaryWeapons = availableItems.filter(item => item.type === "secondary");
-  const grenades = availableItems.filter(item => item.type === "grenade");
-  const armorSets = availableItems.filter(item => item.type === "armor");
-  const boosters = availableItems.filter(item => item.type === "booster");
+  const primaryWeapons = availableItems.filter((item) => item.type === 'primary');
+  const secondaryWeapons = availableItems.filter((item) => item.type === 'secondary');
+  const grenades = availableItems.filter((item) => item.type === 'grenade');
+  const armorSets = availableItems.filter((item) => item.type === 'armor');
+  const boosters = availableItems.filter((item) => item.type === 'booster');
 
   /* document.getElementById("primary-weapon").textContent = selectRandomItem(primaryWeapons).name;
    document.getElementById("secondary-weapon").textContent = selectRandomItem(secondaryWeapons).name;
@@ -192,12 +185,11 @@ function generateArmoryLoadout() {
    document.getElementById("armor-set").textContent = selectRandomItem(armorSets).name;
    document.getElementById("booster").textContent = selectRandomItem(boosters).name;*/
 
-  document.getElementById("primary-weapon").src = getImageSource(selectRandomItem(primaryWeapons));
-  document.getElementById("secondary-weapon").src = getImageSource(selectRandomItem(secondaryWeapons));
-  document.getElementById("grenade").src = getImageSource(selectRandomItem(grenades));
-  document.getElementById("booster").src = getImageBSource(selectRandomItem(boosters));
-  document.getElementById("armor-set").textContent = selectRandomItem(armorSets).name;
-
+  document.getElementById('primary-weapon').src = getImageSource(selectRandomItem(primaryWeapons));
+  document.getElementById('secondary-weapon').src = getImageSource(selectRandomItem(secondaryWeapons));
+  document.getElementById('grenade').src = getImageSource(selectRandomItem(grenades));
+  document.getElementById('booster').src = getImageBSource(selectRandomItem(boosters));
+  document.getElementById('armor-set').textContent = selectRandomItem(armorSets).name;
 }
 
 function getImageSource(item) {
