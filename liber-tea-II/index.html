@@ -1,23 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helldivers 2 Random Loadout</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Helldivers 2 Random Loadout</h1>
-        <div id="abilitySelection">
-            <div class="abilities-container"></div>
+        <div id="stratagemSelection">
+            <div class="stratagems-container"></div>
         </div>
         <br>
         <button id="generateButton">RANDOMIZE!</button>
         <div id="loadoutDisplay" class="loadout-container">
             <!-- Icons will be displayed here -->
         </div>
+        <div class="loadout-container">
+            <div class="double-container">
+                <div class="booster-container">
+                    <img id="booster" class="booster-image" src="" alt="Booster">
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <h2>Warbonds:</h2>
+        <label><input type="checkbox" id="warbond0-checkbox" checked> Super Citizen</label><br>
+        <label><input type="checkbox" id="warbond1-checkbox" checked> Heldivers Mobilize</label><br>
+        <label><input type="checkbox" id="warbond2-checkbox" checked> Steeled Veterans</label><br>
+        <label><input type="checkbox" id="warbond3-checkbox" checked> Cutting Edge</label><br>
+        <label><input type="checkbox" id="warbond4-checkbox" checked> Democratic Detonation</label><br>
+
+        <button onclick="generateArmoryLoadout()">Generate Loadout</button>
+
+        <div id="warbondResults">
+            <h2>Warbond Results:</h2>
+            <div class="row">
+                <!-- First row: Armor -->
+                <div class="column">
+                </div>
+                <div id="armor-set" class="column">
+                </div>
+                <div class="column">
+                </div>
+            </div>
+            <div class="row">
+                <!-- Second row: Weapons and Grenade -->
+                <div class="column">
+                    <img id="primary-weapon" class="weapon-image" src="" alt="Primary Weapon">
+                </div>
+                <div class="column">
+                    <img id="secondary-weapon" class="weapon-image" src="" alt="Secondary Weapon">
+                </div>
+                <div class="column">
+                    <img id="grenade" class="grenade-image" src="" alt="Grenade">
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="stratagem.js"></script>
+    <script src="equipment.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
