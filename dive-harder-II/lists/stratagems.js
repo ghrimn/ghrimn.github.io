@@ -53,6 +53,7 @@ const stratagems = [
   { type: 'Mechanic', name: 'M-102 Fast Recon Vehicle' },
   { type: 'Mechanic', name: 'EXO-49 Emancipator Exosuit' },
   { type: 'Mechanic', name: 'EXO-45 Patriot Exosuit' },
+  // { type: 'Weaponry', name: 'CQC-1 One True Flag' },
 
   // Defense Stratagems
   { type: 'Defense', name: 'A/G-16 Gatling Sentry' },

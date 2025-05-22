@@ -223,6 +223,21 @@ const equipment = [
       { type: "booster", name: "Sample Extricator" }
     ]
   },
+/*   {
+    warbond: "Masters of Ceremony",
+    items: [
+      { type: "armoury", name: "RE-2310 Honorary Guard", cape: "Federation's Embrace" },
+      { type: "armoury", name: "RE-1861 Parade Commander", cape: "Humble Regalia" },
+  
+      { type: "primary", name: "R-2 Amendment" },
+  
+      { type: "sidearm", name: "CQC-2 Saber" },
+  
+      { type: "throwed", name: "G-142 Pyrotech" },
+  
+      { type: "booster", name: "Sample Scanner" }
+    ]
+  }, */
   {
     warbond: "Helldivers x Killzone",
     items: [
@@ -295,6 +310,7 @@ const equipment = [
       { type: "armoury", name: "SR-64 Cinderblock", cape: "Stone-Wrought Perseverance" },
       { type: "armoury", name: "IE-57 Hell-Bent", cape: "Vision of Freedom" },
       { type: "armoury", name: "GS-11 Democracy's Deputy", cape: "Veil of the Valorous Vagabond" },
+      // { type: "armoury", name: "RE-824 Bearer of the Standard", cape: "Seal of General Consensus" },
 
 
       { type: "primary", name: "R-2124 Constitution" },
