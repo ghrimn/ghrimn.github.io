@@ -128,11 +128,12 @@ const offenseBlock = document.querySelector('#offenseBlock');
 const supportBlock = document.querySelector('#supportBlock');
 const defenseBlock = document.querySelector('#defenseBlock');
 
-function createStratagemIcon(stratagem) {
+function createStratagemIcon(stratagem, type) {
   const stratagemIcon = document.createElement('img');
   stratagemIcon.src = `img/strats/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
   stratagemIcon.alt = stratagem.name;
   stratagemIcon.title = stratagem.name;
+  stratagemIcon.classList.add(type);
   if (selectedStratagemsState[stratagem.name] === undefined) {
     stratagemIcon.classList.add('stratagem-btn', 'unselected');
     toggleStratagemSelection(stratagem, stratagemIcon);
@@ -150,7 +151,7 @@ function toggleStratagemSelection(stratagem, stratagemIcon) {
   stratagemIcon.classList.toggle('unselected');
 }
 
-function displayStratagemsContainer(stratagems, container) {
+function displayStratagemsContainer(stratagems, container, type) {
   const stratagemsGroup = document.createElement('div');
   stratagemsGroup.classList.add('stratagems-group');
 
@@ -162,7 +163,7 @@ function displayStratagemsContainer(stratagems, container) {
       stratagemsRow.classList.add('stratagems-row');
       stratagemsGroup.appendChild(stratagemsRow);
     }
-    const stratagemIcon = createStratagemIcon(stratagem);
+    const stratagemIcon = createStratagemIcon(stratagem, type);
     stratagemsRow.appendChild(stratagemIcon);
     count++;
   });
@@ -178,9 +179,32 @@ const offenseStratagems = filterStratagemsByType('Offense');
 const supportStratagems = filterStratagemsByType('Weaponry', 'Ammopack', 'Backpack', 'Mechanic');
 const defenseStratagems = filterStratagemsByType('Defense');
 
-displayStratagemsContainer(offenseStratagems, offenseBlock);
-displayStratagemsContainer(supportStratagems, supportBlock);
-displayStratagemsContainer(defenseStratagems, defenseBlock);
+displayStratagemsContainer(offenseStratagems, offenseBlock, 'offense');
+displayStratagemsContainer(supportStratagems, supportBlock, 'support');
+displayStratagemsContainer(defenseStratagems, defenseBlock, 'defense');
+
+// Function to associate to select all (true) or deselect all (false) stratagems
+// It assumes you want to select/deselect all stratagems of a specific type
+// In case you want to be 1 button for all types, just call this function more times.
+function updateAllStratagemsSelection(type, value) {
+  document.querySelectorAll(`${type} stratagem-btn`).forEach((icon) => {
+    const item_name = icon.title;
+    selectedStratagemsState[item_name] = value;
+    if (value === true) {
+      icon.classList.add('unselected');
+      icon.classList.remove('selected');
+    } else if (value === false) {
+      icon.classList.add('selected');
+      icon.classList.remove('unselected');
+    }
+  });
+}
+
+function updateAllStratagemsAllTypesSelection(value) {
+  ['offense', 'support', 'defense'].forEach((type) => {
+    updateAllStratagemsSelection(type, value);
+  });
+}
 
 //#endregion
 
@@ -364,6 +388,25 @@ types.forEach((type) => {
 
   displayEquipment(items, type, modal);
 });
+
+// Function to associate to select all (true) or deselect all (false) equipment
+function updateAllEquipmentSelection(type, value) {
+  const modal = modalMapping[type];
+  if (!modal) return;
+
+  document.querySelectorAll(`.equipment-btn`).forEach((icon) => {
+    const item_name = icon.className.split('.')[-1].split('.')[0];
+    const key = getEquipmentKey(type, item_name);
+    selectedEquipmentState[key] = value;
+    if (value === true) {
+      icon.classList.add('unselected');
+      icon.classList.remove('selected');
+    } else if (value === false) {
+      icon.classList.add('selected');
+      icon.classList.remove('unselected');
+    }
+  });
+}
 
 //#endregion
 
