@@ -10,6 +10,8 @@ function getLocalStorage(name) {
 }
 
 function clearAllLocalStorage() {
+  updateAllStratagemsAllTypesSelection(false);
+  updateAllEquipmentAllTypesSelection(false);
   localStorage.clear();
 }
 
@@ -187,17 +189,19 @@ displayStratagemsContainer(defenseStratagems, defenseBlock, 'defense');
 // It assumes you want to select/deselect all stratagems of a specific type
 // In case you want to be 1 button for all types, just call this function more times.
 function updateAllStratagemsSelection(type, value) {
-  document.querySelectorAll(`${type} stratagem-btn`).forEach((icon) => {
-    const item_name = icon.title;
+  const strategems = document.getElementsByClassName(`${type} stratagem-btn`);
+  for (let i = 0; i < strategems.length; i++) {
+    const stratagem = strategems[i];
+    const item_name = stratagem.title;
     selectedStratagemsState[item_name] = value;
     if (value === true) {
-      icon.classList.add('unselected');
-      icon.classList.remove('selected');
+      stratagem.classList.add('unselected');
+      stratagem.classList.remove('selected');
     } else if (value === false) {
-      icon.classList.add('selected');
-      icon.classList.remove('unselected');
+      stratagem.classList.add('selected');
+      stratagem.classList.remove('unselected');
     }
-  });
+  }
 }
 
 function updateAllStratagemsAllTypesSelection(value) {
@@ -332,6 +336,7 @@ function createEquipmentIcon(item, type) {
   equipmentIcon.alt = item.name;
   equipmentIcon.title = item.name;
   const key = getEquipmentKey(type, item.name);
+  equipmentIcon.classList.add(type);
   if (selectedEquipmentState[key] === undefined) {
     equipmentIcon.classList.add('equipment-btn', 'unselected');
     toggleEquipmentSelection(item, type, equipmentIcon);
@@ -391,20 +396,26 @@ types.forEach((type) => {
 
 // Function to associate to select all (true) or deselect all (false) equipment
 function updateAllEquipmentSelection(type, value) {
-  const modal = modalMapping[type];
-  if (!modal) return;
-
-  document.querySelectorAll(`.equipment-btn`).forEach((icon) => {
-    const item_name = icon.className.split('.')[-1].split('.')[0];
+  const equipments = document.getElementsByClassName(`${type} equipment-btn`);
+  for (let i = 0; i < equipments.length; i++) {
+    const equipment = equipments[i];
+    const items = equipment.src.split('.')[0].split('/');
+    const item_name = items[items.length - 1];
     const key = getEquipmentKey(type, item_name);
     selectedEquipmentState[key] = value;
     if (value === true) {
-      icon.classList.add('unselected');
-      icon.classList.remove('selected');
+      equipment.classList.add('unselected');
+      equipment.classList.remove('selected');
     } else if (value === false) {
-      icon.classList.add('selected');
-      icon.classList.remove('unselected');
+      equipment.classList.add('selected');
+      equipment.classList.remove('unselected');
     }
+  }
+}
+
+function updateAllEquipmentAllTypesSelection(value) {
+  types.forEach((type) => {
+    updateAllEquipmentSelection(type, value);
   });
 }
 
