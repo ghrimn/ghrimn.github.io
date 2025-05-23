@@ -17,11 +17,11 @@ body {
     background-color: #111;
 }
 
-img{
+img {
     -webkit-user-drag: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
@@ -47,6 +47,12 @@ img{
     border-style: double;
     border-radius: 5rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+#cookieBtn {
+    position: absolute;
+    top: 30px;
+    left: calc(50% - 350px - 70px);
 }
 
 .mainbtnContainer {
