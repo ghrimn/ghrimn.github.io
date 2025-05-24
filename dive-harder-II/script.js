@@ -10,9 +10,10 @@ function getLocalStorage(name) {
 }
 
 function clearAllLocalStorage() {
-  updateAllStratagemsAllTypesSelection(false);
-  updateAllEquipmentAllTypesSelection(false);
+  updateAllStratagemsAllTypesSelection(true);
+  updateAllEquipmentAllTypesSelection(true);
   localStorage.clear();
+  location.reload();
 }
 
 function setStratagemsStorage(stratagems) {
@@ -64,10 +65,10 @@ const difflvlConfig = document.getElementById('difflvlConfig');
 function switchMenu(evt, menu) {
   if (evt.currentTarget.id === 'randomBtn' && evt.currentTarget.classList.contains('active')) {
     displayRandomEquipment();
-    const availableStratagems = stratagems.filter((stratagem) => selectedStratagemsState[stratagem.name]);
-    let selectedStratagems = getRandomStratagems(availableStratagems, 4);
+    let selectedStratagems = getRandomStratagems(stratagems, 4);
     displayRandomStratagems(selectedStratagems);
   }
+  
 
   var i, switchMenu, buttonMain;
   switchMenu = document.getElementsByClassName('switchMenu');
@@ -123,9 +124,9 @@ let currentStratagems = [];
 const selectedStratagemsState = stratagemsConfiguredDict
   ? stratagemsConfiguredDict
   : stratagems.reduce((acc, stratagem) => {
-      acc[stratagem.name] = true;
-      return acc;
-    }, {});
+    acc[stratagem.name] = true;
+    return acc;
+  }, {});
 const offenseBlock = document.querySelector('#offenseBlock');
 const supportBlock = document.querySelector('#supportBlock');
 const defenseBlock = document.querySelector('#defenseBlock');
@@ -188,18 +189,45 @@ displayStratagemsContainer(defenseStratagems, defenseBlock, 'defense');
 // Function to associate to select all (true) or deselect all (false) stratagems
 // It assumes you want to select/deselect all stratagems of a specific type
 // In case you want to be 1 button for all types, just call this function more times.
+function toggleAllStratagemSelections(types) {
+  // types = ['type1', 'type2', 'type3']
+
+  let allSelected = true;
+
+  // First, check if all buttons of all types are selected
+  for (const type of types) {
+    const strategems = document.getElementsByClassName(`${type} stratagem-btn`);
+    for (let i = 0; i < strategems.length; i++) {
+      if (!strategems[i].classList.contains('selected')) {
+        allSelected = false;
+        break;
+      }
+    }
+    if (!allSelected) break; // No need to continue checking
+  }
+
+  const newValue = !allSelected;
+
+  // Now apply the same new value to all types
+  for (const type of types) {
+    updateAllStratagemsSelection(type, newValue);
+  }
+}
+
 function updateAllStratagemsSelection(type, value) {
   const strategems = document.getElementsByClassName(`${type} stratagem-btn`);
   for (let i = 0; i < strategems.length; i++) {
     const stratagem = strategems[i];
     const item_name = stratagem.title;
+
     selectedStratagemsState[item_name] = value;
+   
     if (value === true) {
-      stratagem.classList.add('unselected');
-      stratagem.classList.remove('selected');
-    } else if (value === false) {
       stratagem.classList.add('selected');
       stratagem.classList.remove('unselected');
+    } else {
+      stratagem.classList.add('unselected');
+      stratagem.classList.remove('selected');
     }
   }
 }
@@ -394,24 +422,47 @@ types.forEach((type) => {
   displayEquipment(items, type, modal);
 });
 
-// Function to associate to select all (true) or deselect all (false) equipment
+// ✅ Smart toggle function
+function toggleAllEquipmentSelection(type) {
+  const equipments = document.getElementsByClassName(`${type} equipment-btn`);
+  let allSelected = true;
+
+  // Check if all are currently selected
+  for (let i = 0; i < equipments.length; i++) {
+    if (!equipments[i].classList.contains('selected')) {
+      allSelected = false;
+      break;
+    }
+  }
+
+  // Toggle: if all selected → unselect all; else → select all
+  const newValue = !allSelected;
+  updateAllEquipmentSelection(type, newValue);
+}
+
+// ✅ Fixed update function — now matches selected state properly
 function updateAllEquipmentSelection(type, value) {
   const equipments = document.getElementsByClassName(`${type} equipment-btn`);
   for (let i = 0; i < equipments.length; i++) {
     const equipment = equipments[i];
-    const items = equipment.src.split('.')[0].split('/');
-    const item_name = items[items.length - 1];
-    const key = getEquipmentKey(type, item_name);
+    const item = equipment.title;
+    const key = getEquipmentKey(type, item);
+
     selectedEquipmentState[key] = value;
+
     if (value === true) {
-      equipment.classList.add('unselected');
-      equipment.classList.remove('selected');
-    } else if (value === false) {
       equipment.classList.add('selected');
       equipment.classList.remove('unselected');
+    } else {
+      equipment.classList.add('unselected');
+      equipment.classList.remove('selected');
     }
   }
+
+  // Save to local storage
+  setEquipmentStorage(selectedEquipmentState);
 }
+
 
 function updateAllEquipmentAllTypesSelection(value) {
   types.forEach((type) => {
@@ -434,9 +485,31 @@ const equipmentMap = new Map([
 const equipmentItems = equipment.flatMap((set) => set.items);
 
 function getRandomEquipment(type, currentEquipment) {
-  let itemsOfType = equipmentItems.filter((item) => item.type === type && selectedEquipmentState[getEquipmentKey(type, item.name)] === true && item.name !== currentEquipment?.name);
-  // Filter out the current equipment for this type
-  return itemsOfType[Math.floor(Math.random() * itemsOfType.length)];
+  let itemsOfType = equipmentItems.filter(
+    (item) =>
+      item.type === type &&
+      selectedEquipmentState[getEquipmentKey(type, item.name)] === true
+  );
+
+  // If none selected, fall back to all of the type
+  if (itemsOfType.length === 0) {
+    itemsOfType = equipmentItems.filter((item) => item.type === type);
+  }
+
+  // If only one item (or fallback leads to only one), return it
+  if (itemsOfType.length === 1) {
+    return itemsOfType[0];
+  }
+
+  // Prefer not repeating current equipment
+  const filtered = itemsOfType.filter(
+    (item) => item.name !== currentEquipment?.name
+  );
+
+  // If all were filtered out (only one unique), fall back
+  const finalPool = filtered.length > 0 ? filtered : itemsOfType;
+
+  return finalPool[Math.floor(Math.random() * finalPool.length)];
 }
 
 function displayEquipImages(element, equipment) {
@@ -541,9 +614,18 @@ function getCurrentEquipment(element) {
 
 //#region RANDOMIZE STRATAGEMS
 
-function getRandomStratagems(stratagems, count, index) {
-  let shuffled = stratagems.sort(() => 0.5 - Math.random());
+function getRandomStratagems(stratagems, count, index = -1) {
+  // Split stratagems into enabled and others
+  const enabledStrats = stratagems.filter(s => selectedStratagemsState[s.name]);
+  const otherStrats = stratagems.filter(s => !selectedStratagemsState[s.name]);
+
+  // Shuffle both arrays
+  let shuffledEnabled = [...enabledStrats].sort(() => 0.5 - Math.random());
+  let shuffledOthers = [...otherStrats].sort(() => 0.5 - Math.random());
+
   let result = [];
+
+  // Reset all support-type flags fresh on each call, no carryover from previous selections
   let weaponryAdded = false;
   let backpackAdded = false;
   let mechanicAdded = false;
@@ -552,10 +634,12 @@ function getRandomStratagems(stratagems, count, index) {
     weaponryAdded = true;
   }
 
+  // **REMOVE THIS ENTIRE BLOCK THAT SETS FLAGS FROM currentStratagems:**
+  /*
   if (currentStratagems.length > 0) {
     currentStratagems
       .filter((_, i) => i !== index)
-      .forEach((stratagem) => {
+      .forEach(stratagem => {
         if (stratagem.type === 'Weaponry') weaponryAdded = true;
         if (stratagem.type === 'Backpack') backpackAdded = true;
         if (stratagem.type === 'Mechanic') mechanicAdded = true;
@@ -565,15 +649,16 @@ function getRandomStratagems(stratagems, count, index) {
         }
       });
   }
+  */
 
-  // Ensure the first stratagem matches the selectedMissionStratagem if it exists
   if (selectedMissionStratagem) {
-    const selectedMission = stratagems.find((stratagem) => stratagem.name === selectedMissionStratagem.title);
+    const selectedMission = stratagems.find(s => s.name === selectedMissionStratagem.title);
     if (selectedMission) {
       result.push(selectedMission);
-      shuffled = shuffled.filter((stratagem) => stratagem.name !== selectedMissionStratagem.title);
+      // Remove selectedMission from both lists if present
+      shuffledEnabled = shuffledEnabled.filter(s => s.name !== selectedMissionStratagem.title);
+      shuffledOthers = shuffledOthers.filter(s => s.name !== selectedMissionStratagem.title);
 
-      // FIX: Update the flags based on the selected mission stratagem's type
       if (selectedMission.type === 'Weaponry') weaponryAdded = true;
       if (selectedMission.type === 'Backpack') backpackAdded = true;
       if (selectedMission.type === 'Mechanic') mechanicAdded = true;
@@ -584,36 +669,42 @@ function getRandomStratagems(stratagems, count, index) {
     }
   }
 
-  for (let stratagem of shuffled) {
+  function canAddStratagem(s) {
+    if (s.type === 'Weaponry') return !weaponryAdded;
+    if (s.type === 'Backpack') return !backpackAdded;
+    if (s.type === 'Mechanic') return !mechanicAdded;
+    if (s.type === 'Ammopack') return !weaponryAdded && !backpackAdded;
+    return true;
+  }
+
+  // Add from enabled list
+  for (let strat of shuffledEnabled) {
     if (result.length >= count) break;
-    if (stratagem.type === 'Weaponry') {
-      if (!weaponryAdded) {
-        result.push(stratagem);
+    if (canAddStratagem(strat)) {
+      result.push(strat);
+      if (strat.type === 'Weaponry') weaponryAdded = true;
+      if (strat.type === 'Backpack') backpackAdded = true;
+      if (strat.type === 'Mechanic') mechanicAdded = true;
+      if (strat.type === 'Ammopack') {
         weaponryAdded = true;
-      }
-    } else if (stratagem.type === 'Backpack') {
-      if (!backpackAdded) {
-        result.push(stratagem);
         backpackAdded = true;
       }
-    } else if (stratagem.type === 'Ammopack') {
-      if (!backpackAdded && !weaponryAdded) {
-        result.push(stratagem);
-        backpackAdded = true;
-        weaponryAdded = true;
-      }
-    } else if (stratagem.type === 'Mechanic') {
-      if (!mechanicAdded) {
-        result.push(stratagem);
-        mechanicAdded = true;
-      }
-    } else {
-      result.push(stratagem);
     }
   }
-  shuffled = shuffled.filter((stratagem) => !result.includes(stratagem));
-  while (result.length < count) {
-    result.push(shuffled.shift());
+
+  // Fill remaining slots from others
+  for (let strat of shuffledOthers) {
+    if (result.length >= count) break;
+    if (canAddStratagem(strat)) {
+      result.push(strat);
+      if (strat.type === 'Weaponry') weaponryAdded = true;
+      if (strat.type === 'Backpack') backpackAdded = true;
+      if (strat.type === 'Mechanic') mechanicAdded = true;
+      if (strat.type === 'Ammopack') {
+        weaponryAdded = true;
+        backpackAdded = true;
+      }
+    }
   }
 
   return result;
@@ -691,10 +782,10 @@ document.getElementById('difflvlResult').addEventListener('click', () => {
   diffgen();
 });
 
-document.querySelectorAll('#stratagemResult').forEach((element) => {
-  element.addEventListener('click', function () {
-    const availableStratagems = stratagems.filter((stratagem) => selectedStratagemsState[stratagem.name]);
-    let selectedStratagems = getRandomStratagems(availableStratagems, 4);
+document.querySelectorAll('#stratagemResult').forEach(element => {
+  element.addEventListener('click', () => {
+    const selectedStratagems = getRandomStratagems(stratagems, 4);
     displayRandomStratagems(selectedStratagems);
   });
 });
+

@@ -50,13 +50,11 @@ img {
 }
 
 #cookieBtn {
-    position: absolute;
-    top: 30px;
-    left: calc(50% - 350px - 70px);
-}
+    aspect-ratio: 1 / 1; /* makes it square */
+  }
 
 .mainbtnContainer {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 0.5fr 2.5fr 3fr; /* proportional widths */
     column-gap: 20px;
     display: grid;
     max-width: min(90%, 700px);

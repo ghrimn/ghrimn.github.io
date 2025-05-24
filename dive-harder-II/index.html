@@ -1,277 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Helldivers II Randomizer</title>
-  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 
-  <body>
-    <div class="mainContainer">
-      <div id="cookieBtn" class="buttonMain" onclick="clearAllLocalStorage()">
-        <i class="fa-solid fa-cookie-bite"></i>
+  <title>Helldivers II Randomizer</title>
+</head>
+
+<body>
+  <div class="mainContainer">
+    <div class="mainbtnContainer">
+      <div id="cookieBtn" class="buttonMain iconButton" onclick="clearAllLocalStorage()">
+        <i class="fa-solid fa-mug-hot"></i>
       </div>
 
-      <div class="mainbtnContainer">
-        <div id="configBtn" class="buttonMain" onclick="switchMenu(event, 'configsContainer')">
-          CONFIGURE
-          <i class="fa-solid fa-gears"></i>
-        </div>
-        <div id="randomBtn" class="buttonMain" onclick="switchMenu(event, 'resultsContainer')">
-          RANDOMIZE
-          <i class="fa-solid fa-dice"></i>
-        </div>
+      <div id="configBtn" class="buttonMain" onclick="switchMenu(event, 'configsContainer')">
+        CONFIGURE
+        <i class="fa-solid fa-gears"></i>
       </div>
 
-      <div id="configsContainer" class="switchMenu" style="display: none">
-        <div id="difflvlConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-skull"></i>
-          </div>
-          <h2 class="blockText">DIFFICULTY</h2>
-        </div>
+      <div id="randomBtn" class="buttonMain" onclick="switchMenu(event, 'resultsContainer')">
+        RANDOMIZE
+        <i class="fa-solid fa-dice"></i>
+      </div>
+    </div>
 
-        <div id="armouryConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-shield"></i>
-          </div>
-          <h2 class="blockText">ARMORY</h2>
+    <div id="configsContainer" class="switchMenu" style="display: none">
+      <div id="difflvlConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-skull"></i>
         </div>
-
-        <div id="primaryConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-person-rifle"></i>
-          </div>
-          <h2 class="blockText">PRIMARY</h2>
-        </div>
-
-        <div id="sidearmConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-gun"></i>
-          </div>
-          <h2 class="blockText">SECONDARY</h2>
-        </div>
-
-        <div id="throwedConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-bomb"></i>
-          </div>
-          <h2 class="blockText">THROWABLE</h2>
-        </div>
-
-        <div id="boosterConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-square-plus"></i>
-          </div>
-          <h2 class="blockText">BOOSTER</h2>
-        </div>
-
-        <div id="stratagemConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-satellite-dish"></i>
-          </div>
-          <h2 class="blockText">STRATAGEMS</h2>
-        </div>
-
-        <div id="missionConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-globe"></i>
-          </div>
-          <h2 class="blockText">MISSION</h2>
-          <div class="mission-ico"></div>
-        </div>
-        <div id="shotgunConfig" class="configBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-pause"></i>
-          </div>
-          <h2 class="blockText">SHOTGUN</h2>
-        </div>
-
-        <!---->
-
-        <div id="armourySelect" class="selectBlock">
-          <div class="modal-content">
-            <div class="modal-group">
-              <h2 class="configTitle">
-                <div class="block-icon">
-                  <i class="fa-solid fa-shield"></i>
-                </div>
-                ARMORY
-              </h2>
-              <span class="close"></span>
-            </div>
-          </div>
-        </div>
-
-        <div id="primarySelect" class="selectBlock">
-          <div class="modal-content">
-            <div class="modal-group">
-              <h2 class="configTitle">
-                <div class="block-icon">
-                  <i class="fa-solid fa-person-rifle"></i>
-                </div>
-                PRIMARY
-              </h2>
-              <span class="close"></span>
-            </div>
-          </div>
-        </div>
-
-        <div id="sidearmSelect" class="selectBlock">
-          <div class="modal-content">
-            <div class="modal-group">
-              <h2 class="configTitle">
-                <div class="block-icon">
-                  <i class="fa-solid fa-gun"></i>
-                </div>
-                SECONDARY
-              </h2>
-              <span class="close"></span>
-            </div>
-          </div>
-        </div>
-
-        <div id="throwedSelect" class="selectBlock">
-          <div class="modal-content">
-            <div class="modal-group">
-              <h2 class="configTitle">
-                <div class="block-icon">
-                  <i class="fa-solid fa-bomb"></i>
-                </div>
-                THROWABLE
-              </h2>
-              <span class="close"></span>
-            </div>
-          </div>
-        </div>
-
-        <div id="boosterSelect" class="selectBlock">
-          <div class="modal-content">
-            <div class="modal-group">
-              <h2 class="configTitle">
-                <div class="block-icon">
-                  <i class="fa-solid fa-square-plus"></i>
-                </div>
-                BOOSTER
-              </h2>
-              <span class="close"></span>
-            </div>
-          </div>
-        </div>
+        <h2 class="blockText">DIFFICULTY</h2>
       </div>
 
-      <div id="stratagemSelect" class="selectBlock">
-        <div class="modal-content">
-          <div class="modal-group">
-            <h2 class="configTitle" style="grid-area: 1 / 1 / 2 / 4">
-              <div class="block-icon">
-                <i class="fa-solid fa-satellite-dish"></i>
-              </div>
-              STRATAGEMS
-            </h2>
-            <span class="close"></span>
-            <div id="offenseBlock" class="equipment-group">
-              <h2 class="blockText stratPermit">OFFENSE</h2>
-            </div>
-
-            <div id="supportBlock" class="equipment-group">
-              <h2 class="blockText stratPermit">SUPPORT</h2>
-            </div>
-
-            <div id="defenseBlock" class="equipment-group">
-              <h2 class="blockText stratPermit">DEFENSE</h2>
-            </div>
-          </div>
+      <div id="armouryConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-shield"></i>
         </div>
+        <h2 class="blockText">ARMORY</h2>
       </div>
 
-      <div id="missionSelect" class="selectBlock">
-        <div class="modal-content">
-          <div class="modal-group">
-            <h2 class="configTitle" style="grid-area: 1 / 1 / 2 / 4">
-              <div class="block-icon">
-                <i class="fa-solid fa-globe"></i>
-              </div>
-              MISSION
-            </h2>
-            <span class="close"></span>
-            <div id="offenseMission" class="equipment-group">
-              <h2 class="blockText stratPermit">OFFENSE</h2>
-            </div>
-
-            <div id="supportMission" class="equipment-group">
-              <h2 class="blockText stratPermit">SUPPORT</h2>
-            </div>
-
-            <div id="defenseMission" class="equipment-group">
-              <h2 class="blockText stratPermit">DEFENSE</h2>
-            </div>
-          </div>
+      <div id="primaryConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-person-rifle"></i>
         </div>
+        <h2 class="blockText">PRIMARY</h2>
+      </div>
+
+      <div id="sidearmConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-gun"></i>
+        </div>
+        <h2 class="blockText">SECONDARY</h2>
+      </div>
+
+      <div id="throwedConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-bomb"></i>
+        </div>
+        <h2 class="blockText">THROWABLE</h2>
+      </div>
+
+      <div id="boosterConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-square-plus"></i>
+        </div>
+        <h2 class="blockText">BOOSTER</h2>
+      </div>
+
+      <div id="stratagemConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-satellite-dish"></i>
+        </div>
+        <h2 class="blockText">STRATAGEMS</h2>
+      </div>
+
+      <div id="missionConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-globe"></i>
+        </div>
+        <h2 class="blockText">MISSION</h2>
+        <div class="mission-ico"></div>
+      </div>
+      <div id="shotgunConfig" class="configBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-person-military-to-person"></i>
+        </div>
+        <h2 class="blockText">CIVILIAN-GRADE</h2>
       </div>
 
       <!---->
 
-      <div id="resultsContainer" class="switchMenu">
-        <div id="armouryResult" class="resultBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-shield"></i>
+      <div id="armourySelect" class="selectBlock">
+        <div class="modal-content">
+          <div class="modal-group">
+            <h2 class="configTitle" onclick="toggleAllEquipmentSelection('armoury')">
+              <div class="block-icon">
+                <i class="fa-solid fa-shield"></i>
+              </div>
+              ARMORY
+            </h2>
+            <span class="close"></span>
           </div>
-          <h2 class="blockText">ARMORY</h2>
-          <div id="armouryDiv"></div>
         </div>
+      </div>
 
-        <div id="primaryResult" class="resultBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-person-rifle"></i>
+      <div id="primarySelect" class="selectBlock">
+        <div class="modal-content">
+          <div class="modal-group">
+            <h2 class="configTitle" onclick="toggleAllEquipmentSelection('primary')">
+              <div class="block-icon">
+                <i class="fa-solid fa-person-rifle"></i>
+              </div>
+              PRIMARY
+            </h2>
+            <span class="close"></span>
           </div>
-          <h2 class="blockText">PRIMARY</h2>
-          <div id="primaryDiv"></div>
         </div>
+      </div>
 
-        <div id="sidearmResult" class="resultBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-gun"></i>
+      <div id="sidearmSelect" class="selectBlock">
+        <div class="modal-content">
+          <div class="modal-group">
+            <h2 class="configTitle" onclick="toggleAllEquipmentSelection('sidearm')">
+              <div class="block-icon">
+                <i class="fa-solid fa-gun"></i>
+              </div>
+              SECONDARY
+            </h2>
+            <span class="close"></span>
           </div>
-          <h2 class="blockText">SECONDARY</h2>
-          <div id="sidearmDiv"></div>
         </div>
+      </div>
 
-        <div id="throwedResult" class="resultBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-bomb"></i>
+      <div id="throwedSelect" class="selectBlock">
+        <div class="modal-content">
+          <div class="modal-group">
+            <h2 class="configTitle" onclick="toggleAllEquipmentSelection('throwed')">
+              <div class="block-icon">
+                <i class="fa-solid fa-bomb"></i>
+              </div>
+              THROWABLE
+            </h2>
+            <span class="close"></span>
           </div>
-          <h2 class="blockText">THROWABLE</h2>
-          <div id="throwedDiv"></div>
         </div>
+      </div>
 
-        <div id="boosterResult" class="resultBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-square-plus"></i>
+      <div id="boosterSelect" class="selectBlock">
+        <div class="modal-content">
+          <div class="modal-group">
+            <h2 class="configTitle" onclick="toggleAllEquipmentSelection('booster')">
+              <div class="block-icon">
+                <i class="fa-solid fa-square-plus"></i>
+              </div>
+              BOOSTER
+            </h2>
+            <span class="close"></span>
           </div>
-          <h2 class="blockText">BOOSTER</h2>
-          <div id="boosterDiv"></div>
-        </div>
-
-        <div id="stratagemResult" class="resultBlock">
-          <div class="block-icon">
-            <i class="fa-solid fa-satellite-dish"></i>
-          </div>
-          <h2 class="blockText">STRATAGEMS</h2>
-          <div id="stratagemDiv"></div>
-        </div>
-        <div id="difflvlResult" class="resultBlock">
-          <h2 class="blockText" id="difflvl"></h2>
         </div>
       </div>
     </div>
-  </body>
 
-  <script src="lists/equipment.js"></script>
-  <script src="lists/stratagems.js"></script>
-  <script src="script.js"></script>
+    <div id="stratagemSelect" class="selectBlock">
+      <div class="modal-content">
+        <div class="modal-group">
+          <h2 class="configTitle" style="grid-area: 1 / 1 / 2 / 4"
+            onclick="toggleAllStratagemSelections(['offense','support','defense'])">
+            <div class="block-icon">
+              <i class="fa-solid fa-satellite-dish"></i>
+            </div>
+            STRATAGEMS
+          </h2>
+          <span class="close"></span>
+          <div id="offenseBlock" class="equipment-group">
+            <h2 class="blockText stratPermit" onclick="toggleAllStratagemSelections(['offense'])">OFFENSE</h2>
+          </div>
+
+          <div id="supportBlock" class="equipment-group">
+            <h2 class="blockText stratPermit" onclick="toggleAllStratagemSelections(['support'])">SUPPORT</h2>
+          </div>
+
+          <div id="defenseBlock" class="equipment-group">
+            <h2 class="blockText stratPermit" onclick="toggleAllStratagemSelections(['defense'])">DEFENSE</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="missionSelect" class="selectBlock">
+      <div class="modal-content">
+        <div class="modal-group">
+          <h2 class="configTitle" style="grid-area: 1 / 1 / 2 / 4">
+            <div class="block-icon">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            MISSION
+          </h2>
+          <span class="close"></span>
+          <div id="offenseMission" class="equipment-group">
+            <h2 class="blockText stratPermit">OFFENSE</h2>
+          </div>
+
+          <div id="supportMission" class="equipment-group">
+            <h2 class="blockText stratPermit">SUPPORT</h2>
+          </div>
+
+          <div id="defenseMission" class="equipment-group">
+            <h2 class="blockText stratPermit">DEFENSE</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!---->
+
+    <div id="resultsContainer" class="switchMenu">
+      <div id="armouryResult" class="resultBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-shield"></i>
+        </div>
+        <h2 class="blockText">ARMORY</h2>
+        <div id="armouryDiv"></div>
+      </div>
+
+      <div id="primaryResult" class="resultBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-person-rifle"></i>
+        </div>
+        <h2 class="blockText">PRIMARY</h2>
+        <div id="primaryDiv"></div>
+      </div>
+
+      <div id="sidearmResult" class="resultBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-gun"></i>
+        </div>
+        <h2 class="blockText">SECONDARY</h2>
+        <div id="sidearmDiv"></div>
+      </div>
+
+      <div id="throwedResult" class="resultBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-bomb"></i>
+        </div>
+        <h2 class="blockText">THROWABLE</h2>
+        <div id="throwedDiv"></div>
+      </div>
+
+      <div id="boosterResult" class="resultBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-square-plus"></i>
+        </div>
+        <h2 class="blockText">BOOSTER</h2>
+        <div id="boosterDiv"></div>
+      </div>
+
+      <div id="stratagemResult" class="resultBlock">
+        <div class="block-icon">
+          <i class="fa-solid fa-satellite-dish"></i>
+        </div>
+        <h2 class="blockText">STRATAGEMS</h2>
+        <div id="stratagemDiv"></div>
+      </div>
+      <div id="difflvlResult" class="resultBlock">
+        <h2 class="blockText" id="difflvl"></h2>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="lists/equipment.js"></script>
+<script src="lists/stratagems.js"></script>
+<script src="script.js"></script>
+
 </html>
