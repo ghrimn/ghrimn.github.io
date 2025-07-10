@@ -13,7 +13,8 @@
 
   <meta name="theme-color" content="#FFE800">
   <meta property="og:title" content="Helldivers II Dive Harder" />
-  <meta property="og:description" content="Experience the thrill of a randomized loadout with each drop. Are you ready to dive harder into freedom? Dive, strike, kill, dive, dive!" />
+  <meta property="og:description"
+    content="Experience the thrill of a randomized loadout with each drop. Are you ready to dive harder into freedom? Dive, strike, kill, dive, dive!" />
   <meta property="og:image" content="https://ghrimn.github.io/dive-harder-II/img/favicon.png" />
   <meta property="og:url" content="https://ghrimn.github.io/dive-harder-II/" />
   <meta property="og:type" content="website" />
@@ -38,13 +39,6 @@
     </div>
 
     <div id="configsContainer" class="switchMenu" style="display: none">
-      <div id="difflvlConfig" class="configBlock">
-        <div class="block-icon">
-          <i class="fa-solid fa-skull"></i>
-        </div>
-        <h2 class="blockText">DIFFICULTY</h2>
-      </div>
-
       <div id="armouryConfig" class="configBlock">
         <div class="block-icon">
           <i class="fa-solid fa-shield"></i>
@@ -89,16 +83,19 @@
 
       <div id="missionConfig" class="configBlock">
         <div class="block-icon">
-          <i class="fa-solid fa-globe"></i>
+          <div class="mission-ico">
+            <i class="fa-solid fa-globe"></i>
+          </div>
         </div>
         <h2 class="blockText">MISSION</h2>
-        <div class="mission-ico"></div>
       </div>
-      <div id="shotgunConfig" class="configBlock">
+      <div id="warbondConfig" class="configBlock">
         <div class="block-icon">
-          <i class="fa-solid fa-person-military-to-person"></i>
+          <div class="warbond-ico">
+            <i class="fa-solid fa-boxes"></i>
+          </div>
         </div>
-        <h2 class="blockText">CIVILIAN-GRADE</h2>
+        <h2 class="blockText">WARBONDS</h2>
       </div>
 
       <!---->
@@ -172,6 +169,21 @@
           </div>
         </div>
       </div>
+
+      <div id="warbondSelect" class="selectBlock">
+        <div class="modal-content">
+          <div class="modal-group">
+            <h2 class="configTitle" onclick="toggleAllEquipmentSelection('warbond')">
+              <div class="block-icon">
+                <i class="fa-solid fa-boxes"></i>
+              </div>
+              WARBONDS
+            </h2>
+            <span class="close"></span>
+            <div id="warbondImageContainer"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="stratagemSelect" class="selectBlock">
@@ -221,6 +233,19 @@
           <div id="defenseMission" class="equipment-group">
             <h2 class="blockText stratPermit">DEFENSE</h2>
           </div>
+
+          <h2 class="configTitle" style="grid-area: 3 / 2 / 4 / 3">
+            <div class="block-icon">
+              <i class="fa-solid fa-person-military-to-person"></i>
+            </div>
+            CIVILIAN-GRADE
+          </h2>
+          <div id="civtoolConfig" style="grid-area: 4 / 2 / 5 / 3;">
+            <div class="civtoolToggle off" onclick="this.classList.toggle('on'); this.classList.toggle('off');">
+              <div class="slider"></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -233,7 +258,11 @@
           <i class="fa-solid fa-shield"></i>
         </div>
         <h2 class="blockText">ARMORY</h2>
-        <div id="armouryDiv"></div>
+        <div id="armouryDiv" class="placeholder">
+          <i class="fa-solid fa-question"></i>
+          <i class="fa-solid fa-question"></i>
+          <i class="fa-solid fa-question"></i>
+        </div>
       </div>
 
       <div id="primaryResult" class="resultBlock">
@@ -241,7 +270,10 @@
           <i class="fa-solid fa-person-rifle"></i>
         </div>
         <h2 class="blockText">PRIMARY</h2>
-        <div id="primaryDiv"></div>
+        <div id="primaryDiv" class="placeholder">
+          <i class="fa-solid fa-question"></i>
+
+        </div>
       </div>
 
       <div id="sidearmResult" class="resultBlock">
@@ -249,7 +281,10 @@
           <i class="fa-solid fa-gun"></i>
         </div>
         <h2 class="blockText">SECONDARY</h2>
-        <div id="sidearmDiv"></div>
+        <div id="sidearmDiv" class="placeholder">
+          <i class="fa-solid fa-question"></i>
+
+        </div>
       </div>
 
       <div id="throwedResult" class="resultBlock">
@@ -257,7 +292,10 @@
           <i class="fa-solid fa-bomb"></i>
         </div>
         <h2 class="blockText">THROWABLE</h2>
-        <div id="throwedDiv"></div>
+        <div id="throwedDiv" class="placeholder">
+          <i class="fa-solid fa-question"></i>
+
+        </div>
       </div>
 
       <div id="boosterResult" class="resultBlock">
@@ -265,7 +303,9 @@
           <i class="fa-solid fa-square-plus"></i>
         </div>
         <h2 class="blockText">BOOSTER</h2>
-        <div id="boosterDiv"></div>
+        <div id="boosterDiv" class="placeholder">
+          <i class="fa-solid fa-question"></i>
+        </div>
       </div>
 
       <div id="stratagemResult" class="resultBlock">
@@ -273,10 +313,12 @@
           <i class="fa-solid fa-satellite-dish"></i>
         </div>
         <h2 class="blockText">STRATAGEMS</h2>
-        <div id="stratagemDiv"></div>
-      </div>
-      <div id="difflvlResult" class="resultBlock">
-        <h2 class="blockText" id="difflvl"></h2>
+        <div id="stratagemDiv" class="placeholder">
+          <i class="fa-solid fa-question"></i>
+          <i class="fa-solid fa-question"></i>
+          <i class="fa-solid fa-question"></i>
+          <i class="fa-solid fa-question"></i>
+        </div>
       </div>
     </div>
   </div>

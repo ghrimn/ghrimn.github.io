@@ -41,10 +41,10 @@ const { equipmentConfiguredDict, stratagemsConfiguredDict } = loadConfiguredDict
 function randomizeBackground() {
   let index = Math.floor(Math.random() * 10); // Adjust range if needed
   let img = new Image();
-  img.src = `img/backg/image_${index}.jpg`;
+  img.src = `img/back/image_${index}.jpg`;
 
   img.onload = function () {
-    document.body.style.backgroundImage = `url(img/backg/image_${index}.jpg)`;
+    document.body.style.backgroundImage = `url(img/back/image_${index}.jpg)`;
   };
 
   img.onerror = function () {
@@ -54,13 +54,11 @@ function randomizeBackground() {
 
 randomizeBackground();
 document.addEventListener('contextmenu', (event) => event.preventDefault());
-var diff = ['Trivial', 'Easy', 'Medium', 'Challenging', 'Hard', 'Extreme', 'Suicide', 'Impossible', 'Helldive', 'Super Helldive'];
 
 //#region CONFIG/RANDOM SWITCH MENUS
 
 document.getElementById('randomBtn').click();
-const shotgunConfig = document.getElementById('shotgunConfig');
-const difflvlConfig = document.getElementById('difflvlConfig');
+const civtoolToggle = document.querySelector('.civtoolToggle');
 
 function switchMenu(evt, menu) {
   if (evt.currentTarget.id === 'randomBtn' && evt.currentTarget.classList.contains('active')) {
@@ -68,7 +66,7 @@ function switchMenu(evt, menu) {
     let selectedStratagems = getRandomStratagems(stratagems, 4);
     displayRandomStratagems(selectedStratagems);
   }
-  
+
 
   var i, switchMenu, buttonMain;
   switchMenu = document.getElementsByClassName('switchMenu');
@@ -117,6 +115,7 @@ setupModal('throwedConfig', 'throwedSelect');
 setupModal('boosterConfig', 'boosterSelect');
 setupModal('stratagemConfig', 'stratagemSelect');
 setupModal('missionConfig', 'missionSelect');
+setupModal('warbondConfig', 'warbondSelect');
 
 //#region DISPLAY/ORGANIZE STRATAGEM ICONS
 
@@ -133,7 +132,7 @@ const defenseBlock = document.querySelector('#defenseBlock');
 
 function createStratagemIcon(stratagem, type) {
   const stratagemIcon = document.createElement('img');
-  stratagemIcon.src = `img/strats/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
+  stratagemIcon.src = `img/strat/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
   stratagemIcon.alt = stratagem.name;
   stratagemIcon.title = stratagem.name;
   stratagemIcon.classList.add(type);
@@ -186,15 +185,10 @@ displayStratagemsContainer(offenseStratagems, offenseBlock, 'offense');
 displayStratagemsContainer(supportStratagems, supportBlock, 'support');
 displayStratagemsContainer(defenseStratagems, defenseBlock, 'defense');
 
-// Function to associate to select all (true) or deselect all (false) stratagems
-// It assumes you want to select/deselect all stratagems of a specific type
-// In case you want to be 1 button for all types, just call this function more times.
 function toggleAllStratagemSelections(types) {
-  // types = ['type1', 'type2', 'type3']
 
   let allSelected = true;
 
-  // First, check if all buttons of all types are selected
   for (const type of types) {
     const strategems = document.getElementsByClassName(`${type} stratagem-btn`);
     for (let i = 0; i < strategems.length; i++) {
@@ -208,7 +202,6 @@ function toggleAllStratagemSelections(types) {
 
   const newValue = !allSelected;
 
-  // Now apply the same new value to all types
   for (const type of types) {
     updateAllStratagemsSelection(type, newValue);
   }
@@ -221,7 +214,7 @@ function updateAllStratagemsSelection(type, value) {
     const item_name = stratagem.title;
 
     selectedStratagemsState[item_name] = value;
-   
+
     if (value === true) {
       stratagem.classList.add('selected');
       stratagem.classList.remove('unselected');
@@ -251,11 +244,11 @@ const offenseMission = document.querySelector('#offenseMission');
 const supportMission = document.querySelector('#supportMission');
 const defenseMission = document.querySelector('#defenseMission');
 
-let selectedMissionStratagem = null;
+let selectedMissionStratagems = [];
 
 function createMissionIcon(stratagem) {
   const missionIcon = document.createElement('img');
-  missionIcon.src = `img/strats/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
+  missionIcon.src = `img/strat/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
   missionIcon.alt = stratagem.name;
   missionIcon.title = stratagem.name;
   missionIcon.classList.add('stratagem-btn', 'unselected');
@@ -264,40 +257,43 @@ function createMissionIcon(stratagem) {
 }
 
 function selectMissionStratagem(stratagem, missionIcon) {
-  if (selectedMissionStratagem === missionIcon) {
-    // Deselect the currently selected stratagem
+  const index = selectedMissionStratagems.findIndex(
+    (entry) => entry.stratagem.name === stratagem.name
+  );
+
+  if (index !== -1) {
+    // Already selected — remove it
+    selectedMissionStratagems.splice(index, 1);
     missionIcon.classList.remove('selected');
     missionIcon.classList.add('unselected');
-    selectedMissionStratagem = null;
     selectedMissionState[stratagem.name] = false;
-    updateMissionDisplay(null); // Clear the display
   } else {
-    // Deselect any previously selected stratagem
-    if (selectedMissionStratagem) {
-      selectedMissionStratagem.classList.remove('selected');
-      selectedMissionStratagem.classList.add('unselected');
+    // Not selected — add if limit not reached
+    if (selectedMissionStratagems.length < 4) {
+      selectedMissionStratagems.push({ stratagem, missionIcon });
+      missionIcon.classList.add('selected');
+      missionIcon.classList.remove('unselected');
+      selectedMissionState[stratagem.name] = true;
     }
-
-    // Select the new stratagem
-    missionIcon.classList.add('selected');
-    missionIcon.classList.remove('unselected');
-    selectedMissionStratagem = missionIcon;
-    selectedMissionState[stratagem.name] = true;
-    // Update the display with the selected stratagem
-    updateMissionDisplay(stratagem);
   }
+
+  updateMissionDisplay();
 }
 
-function updateMissionDisplay(stratagem) {
+function updateMissionDisplay() {
   const displayArea = missionConfig.querySelector('.mission-ico');
   displayArea.innerHTML = ''; // Clear previous display
 
-  if (stratagem) {
-    const selectedImage = document.createElement('img');
-    selectedImage.src = `img/strats/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
-    selectedImage.alt = stratagem.name;
-    selectedImage.title = stratagem.name;
-    displayArea.appendChild(selectedImage);
+  if (selectedMissionStratagems.length === 0) {
+    displayArea.innerHTML = '<i class="fa-solid fa-globe"</i>';
+  } else {
+    selectedMissionStratagems.forEach(({ stratagem }) => {
+      const img = document.createElement('img');
+      img.src = `img/strat/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
+      img.alt = stratagem.name;
+      img.title = stratagem.name;
+      displayArea.appendChild(img);
+    });
   }
 }
 
@@ -357,10 +353,18 @@ const selectedEquipmentState = equipmentConfiguredDict;
 // Generic function to create equipment icon
 function createEquipmentIcon(item, type) {
   const equipmentIcon = document.createElement('img');
-  const basePath = `img/equip/${folderMapping[type]}/${item.name.replace(/[^a-zA-Z0-9]/g, '')}`;
+  const basePath = `img/gear/${folderMapping[type]}/${item.name.replace(/[^a-zA-Z0-9]/g, '')}`;
 
   // Check if the type is "boosters" and use SVG, otherwise use WebP
-  equipmentIcon.src = type === 'booster' ? `${basePath}.webp` : `${basePath}.webp`;
+  if (type === 'booster') {
+    equipmentIcon.src = `${basePath}.svg`;
+    equipmentIcon.onerror = () => {
+      equipmentIcon.onerror = null;  // avoid infinite loop
+      equipmentIcon.src = `${basePath}.webp`;
+    };
+  } else {
+    equipmentIcon.src = `${basePath}.webp`;
+  }
   equipmentIcon.alt = item.name;
   equipmentIcon.title = item.name;
   const key = getEquipmentKey(type, item.name);
@@ -556,18 +560,32 @@ function displayEquipImages(element, equipment) {
     const categories = ['head', 'body', 'back'];
     categories.forEach((category) => {
       if (category === 'back' && selectedCape) {
-        iconPath = `img/equip/armoury/${category}/${selectedCape.replace(/\W/g, '')}.webp`;
+        iconPath = `img/gear/armoury/${category}/${selectedCape.replace(/\W/g, '')}.webp`;
       } else if (category !== 'back') {
-        iconPath = `img/equip/armoury/${category}/${selectedItem.name.replace(/\W/g, '')}.webp`;
+        iconPath = `img/gear/armoury/${category}/${selectedItem.name.replace(/\W/g, '')}.webp`;
       }
       createImageElement(iconPath, null, `${selectedItem.name}\n${selectedCape}`);
     });
   } else if (equipment.type === 'booster') {
-    iconPath = `img/equip/boosters/${equipment.name.replace(/\W/g, '')}.webp`;
-    useClass = 'booster-ico';
-    createImageElement(iconPath, useClass, equipment.name);
-  } else if (['primary', 'sidearm', 'throwed'].includes(equipment.type)) {
-    iconPath = `img/equip/weapons/${equipment.type}/${equipment.name.replace(/\W/g, '')}.webp`;
+    const baseName = equipment.name.replace(/\W/g, '');
+    const svgPath = `img/gear/boosters/${baseName}.svg`;
+    const webpPath = `img/gear/boosters/${baseName}.webp`;
+    const useClass = 'booster-ico';
+
+    const img = new Image();
+    img.onload = function () {
+      // SVG exists, use it
+      createImageElement(svgPath, useClass, equipment.name);
+    };
+    img.onerror = function () {
+      // SVG not found, fallback to webp
+      createImageElement(webpPath, useClass, equipment.name);
+    };
+
+    img.src = svgPath;
+  }
+  else if (['primary', 'sidearm', 'throwed'].includes(equipment.type)) {
+    iconPath = `img/gear/weapons/${equipment.type}/${equipment.name.replace(/\W/g, '')}.webp`;
     createImageElement(iconPath, null, equipment.name);
   } else {
     element.textContent = equipment.name;
@@ -614,29 +632,24 @@ function getCurrentEquipment(element) {
 
 //#region RANDOMIZE STRATAGEMS
 
-function getRandomStratagems(stratagems, count, index = -1) {
-  // Split stratagems into enabled and others
+function getRandomStratagems(stratagems, count, index = -1, considerCurrent = false) {
   const enabledStrats = stratagems.filter(s => selectedStratagemsState[s.name]);
   const otherStrats = stratagems.filter(s => !selectedStratagemsState[s.name]);
 
-  // Shuffle both arrays
   let shuffledEnabled = [...enabledStrats].sort(() => 0.5 - Math.random());
   let shuffledOthers = [...otherStrats].sort(() => 0.5 - Math.random());
 
   let result = [];
 
-  // Reset all support-type flags fresh on each call, no carryover from previous selections
   let weaponryAdded = false;
   let backpackAdded = false;
   let mechanicAdded = false;
 
-  if (shotgunConfig && shotgunConfig.classList.contains('active')) {
+  if (civtoolToggle && civtoolToggle.classList.contains('on')) {
     weaponryAdded = true;
   }
 
-  // **REMOVE THIS ENTIRE BLOCK THAT SETS FLAGS FROM currentStratagems:**
-  /*
-  if (currentStratagems.length > 0) {
+  if (considerCurrent && currentStratagems.length > 0) {
     currentStratagems
       .filter((_, i) => i !== index)
       .forEach(stratagem => {
@@ -649,25 +662,25 @@ function getRandomStratagems(stratagems, count, index = -1) {
         }
       });
   }
-  */
 
-  if (selectedMissionStratagem) {
-    const selectedMission = stratagems.find(s => s.name === selectedMissionStratagem.title);
-    if (selectedMission) {
-      result.push(selectedMission);
-      // Remove selectedMission from both lists if present
-      shuffledEnabled = shuffledEnabled.filter(s => s.name !== selectedMissionStratagem.title);
-      shuffledOthers = shuffledOthers.filter(s => s.name !== selectedMissionStratagem.title);
+  // First: insert mission strats at fixed positions
+  const missionStrats = selectedMissionStratagems.map(({ stratagem }) => stratagem);
+  result = [...missionStrats];
 
-      if (selectedMission.type === 'Weaponry') weaponryAdded = true;
-      if (selectedMission.type === 'Backpack') backpackAdded = true;
-      if (selectedMission.type === 'Mechanic') mechanicAdded = true;
-      if (selectedMission.type === 'Ammopack') {
-        weaponryAdded = true;
-        backpackAdded = true;
-      }
+  // Remove them from pools
+  shuffledEnabled = shuffledEnabled.filter(s => !missionStrats.some(m => m.name === s.name));
+  shuffledOthers = shuffledOthers.filter(s => !missionStrats.some(m => m.name === s.name));
+
+  // Update flags based on mission strats
+  missionStrats.forEach(stratagem => {
+    if (stratagem.type === 'Weaponry') weaponryAdded = true;
+    if (stratagem.type === 'Backpack') backpackAdded = true;
+    if (stratagem.type === 'Mechanic') mechanicAdded = true;
+    if (stratagem.type === 'Ammopack') {
+      weaponryAdded = true;
+      backpackAdded = true;
     }
-  }
+  });
 
   function canAddStratagem(s) {
     if (s.type === 'Weaponry') return !weaponryAdded;
@@ -677,7 +690,8 @@ function getRandomStratagems(stratagems, count, index = -1) {
     return true;
   }
 
-  // Add from enabled list
+  const remainingCount = count - result.length;
+
   for (let strat of shuffledEnabled) {
     if (result.length >= count) break;
     if (canAddStratagem(strat)) {
@@ -692,7 +706,6 @@ function getRandomStratagems(stratagems, count, index = -1) {
     }
   }
 
-  // Fill remaining slots from others
   for (let strat of shuffledOthers) {
     if (result.length >= count) break;
     if (canAddStratagem(strat)) {
@@ -714,73 +727,75 @@ function displayRandomStratagems(stratagems) {
   currentStratagems = stratagems;
   const container = document.getElementById('stratagemDiv');
   container.innerHTML = '';
+  const box = document.createElement('div');
+  box.id = 'stratagemBox';
+  container.appendChild(box);
+  box.addEventListener('click', function (event) {
+    event.stopPropagation(); // Prevent click event from bubbling up
+  });
   stratagems.forEach((stratagem, index) => {
     const div = document.createElement('div');
     div.classList.add('stratagem-ico');
-    var iconPath = `img/strats/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
+    var iconPath = `img/strat/${stratagem.name.replace(/[^a-zA-Z0-9]/g, '')}.svg`;
     div.innerHTML = `<img src="${iconPath}" alt="${stratagem.name}" title="${stratagem.name}" onclick="singleRandomStratagem(${index})">`;
-    container.appendChild(div);
+    box.appendChild(div);
 
     div.addEventListener('click', function (event) {
       event.stopPropagation(); // Prevent click event from bubbling up
     });
   });
-
-  diffgen();
 }
 
 function singleRandomStratagem(index) {
-  const availableStratagems = stratagems.filter((stratagem) => selectedStratagemsState[stratagem.name] && !currentStratagems.some((cs) => cs.name === stratagem.name));
+  // Lock mission slots
+  if (index < selectedMissionStratagems.length) return;
 
-  if (availableStratagems.length < 1) {
-    return;
+  const existingStrats = currentStratagems.filter((_, i) => i !== index);
+  const usedNames = new Set(existingStrats.map(s => s.name));
+
+  const availableStratagems = stratagems.filter(
+    (s) => selectedStratagemsState[s.name] && !usedNames.has(s.name)
+  );
+
+  if (availableStratagems.length === 0) return;
+
+  // Single strat generation, no mission prepending
+  let shuffled = [...availableStratagems].sort(() => 0.5 - Math.random());
+
+  let weaponryAdded = false;
+  let backpackAdded = false;
+  let mechanicAdded = false;
+
+  existingStrats.forEach(stratagem => {
+    if (stratagem.type === 'Weaponry') weaponryAdded = true;
+    if (stratagem.type === 'Backpack') backpackAdded = true;
+    if (stratagem.type === 'Mechanic') mechanicAdded = true;
+    if (stratagem.type === 'Ammopack') {
+      weaponryAdded = true;
+      backpackAdded = true;
+    }
+  });
+
+  function canAdd(s) {
+    if (s.type === 'Weaponry') return !weaponryAdded;
+    if (s.type === 'Backpack') return !backpackAdded;
+    if (s.type === 'Mechanic') return !mechanicAdded;
+    if (s.type === 'Ammopack') return !weaponryAdded && !backpackAdded;
+    return true;
   }
-  const newStratagem = getRandomStratagems(availableStratagems, 1, index)[0];
-  currentStratagems[index] = newStratagem;
-  displayRandomStratagems(currentStratagems);
+
+  const newStrat = shuffled.find(canAdd);
+  if (newStrat) {
+    currentStratagems[index] = newStrat;
+    displayRandomStratagems(currentStratagems);
+  }
 }
 
 //#endregion
 
-// Add a click event listener to toggle the 'active' class
-shotgunConfig.addEventListener('click', function () {
-  shotgunConfig.classList.toggle('active');
-});
-
-difflvlConfig.addEventListener('click', function () {
-  this.classList.toggle('active');
-
-  // Show or hide difflvlResult based on the active class
-  if (this.classList.contains('active')) {
-    difflvlResult.style.display = 'block'; // Show the div
-  } else {
-    difflvlResult.style.display = 'none'; // Hide the div
-  }
-});
-
 for (const [type] of equipmentMap) {
   document.getElementById(type + 'Result').addEventListener('click', () => singleRandomEquipment(type));
 }
-
-let lastDiff;
-
-function diffgen() {
-  let randDiff;
-  let arrIndex;
-
-  do {
-    arrIndex = Math.floor(Math.random() * diff.length);
-    randDiff = diff[arrIndex];
-  } while (randDiff === lastDiff);
-
-  lastDiff = randDiff;
-
-  document.getElementById('difflvl').innerHTML = `${arrIndex + 1} - ${randDiff.toUpperCase()}`;
-}
-
-document.getElementById('difflvlResult').addEventListener('click', () => {
-  diffgen();
-});
 
 document.querySelectorAll('#stratagemResult').forEach(element => {
   element.addEventListener('click', () => {

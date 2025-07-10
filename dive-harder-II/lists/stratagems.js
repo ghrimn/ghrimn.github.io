@@ -22,12 +22,14 @@ const stratagems = [
   { type: 'Offense', name: 'Eagle Smoke Strike' },
 
   // Support Stratagems
+  { type: 'Weaponry', name: 'CQC-1 One True Flag' },
   { type: 'Weaponry', name: 'MG-43 Machine Gun' },
   { type: 'Weaponry', name: 'M-105 Stalwart' },
   { type: 'Weaponry', name: 'MG-206 Heavy Machine Gun' },
   { type: 'Weaponry', name: 'RS-422 Railgun' },
   { type: 'Weaponry', name: 'APW-1 Anti-Materiel Rifle' },
   { type: 'Weaponry', name: 'GL-21 Grenade Launcher' },
+  { type: 'Weaponry', name: 'GL-52 De-Escalator' },
   { type: 'Weaponry', name: 'TX-41 Sterilizer' },
   { type: 'Weaponry', name: 'FLAM-40 Flamethrower' },
   { type: 'Weaponry', name: 'LAS-98 Laser Cannon' },
@@ -47,13 +49,13 @@ const stratagems = [
   { type: 'Backpack', name: 'SH-32 Shield Generator Pack' },
   { type: 'Backpack', name: 'SH-51 Directional Shield' },
   { type: 'Backpack', name: 'SH-20 Ballistic Shield Backpack' },
-  { type: 'Backpack', name: "AX/AR-23 'Guard Dog'" },
-  { type: 'Backpack', name: "AX/LAS-5 'Guard Dog' Rover" },
-  { type: 'Backpack', name: "AX/TX-13 'Guard Dog' Dog Breath" },
+  { type: 'Backpack', name: 'AX/ARC-3 "Guard Dog" K-9' },
+  { type: 'Backpack', name: 'AX/AR-23 "Guard Dog"' },
+  { type: 'Backpack', name: 'AX/LAS-5 "Guard Dog" Rover' },
+  { type: 'Backpack', name: 'AX/TX-13 "Guard Dog" Dog Breath' },
   { type: 'Mechanic', name: 'M-102 Fast Recon Vehicle' },
   { type: 'Mechanic', name: 'EXO-49 Emancipator Exosuit' },
   { type: 'Mechanic', name: 'EXO-45 Patriot Exosuit' },
-  // { type: 'Weaponry', name: 'CQC-1 One True Flag' },
 
   // Defense Stratagems
   { type: 'Defense', name: 'A/G-16 Gatling Sentry' },
@@ -72,7 +74,7 @@ const stratagems = [
   { type: 'Defense', name: 'MD-8 Gas Mines' },
   { type: 'Defense', name: 'MD-6 Anti-Personnel Minefield' },
   { type: 'Defense', name: 'MD-I4 Incendiary Mines' },
-  
+
 ];
 
 // { type: '', name: '' },

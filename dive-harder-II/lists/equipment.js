@@ -12,14 +12,6 @@ const equipment = [
     ]
   },
   {
-    warbond: "Super Citizen",
-    items: [
-      { type: "armoury", name: "DP-53 Savior of the Free", cape: "Will of the People" },
-
-      { type: "primary", name: "MP-98 Knight" }
-    ]
-  },
-  {
     warbond: "Helldivers Mobilize",
     items: [
       { type: "armoury", name: "SC-34 Infiltrator", cape: "Independence Bringer" },
@@ -213,31 +205,100 @@ const equipment = [
     items: [
       { type: "armoury", name: "GS-17 Frontier Marshal", cape: "Reaper of Bounties" },
       { type: "armoury", name: "GS-66 Lawmaker", cape: "Way of the Bandolier" },
-  
+
       { type: "primary", name: "R-6 Deadeye" },
-  
+
       { type: "sidearm", name: "LAS-58 Talon" },
-  
+
       { type: "throwed", name: "TED-63 Dynamite" },
-  
+
       { type: "booster", name: "Sample Extricator" }
     ]
   },
-/*   {
+  {
     warbond: "Masters of Ceremony",
     items: [
       { type: "armoury", name: "RE-2310 Honorary Guard", cape: "Federation's Embrace" },
       { type: "armoury", name: "RE-1861 Parade Commander", cape: "Humble Regalia" },
-  
+
       { type: "primary", name: "R-2 Amendment" },
-  
+
       { type: "sidearm", name: "CQC-2 Saber" },
-  
+
       { type: "throwed", name: "G-142 Pyrotech" },
-  
+
       { type: "booster", name: "Sample Scanner" }
     ]
-  }, */
+  },
+  {
+    warbond: "Force of Law",
+    items: [
+      { type: "armoury", name: "BP-20 Correct Officer", cape: "Miranda's Legacy" },
+      { type: "armoury", name: "BP-32 Jackboot", cape: "Mother Eagle's Wings" },
+
+      { type: "primary", name: "AR-32 Pacifier" },
+
+      { type: "throwed", name: "G-109 Urchin" },
+
+      { type: "booster", name: "Stun Pods" }
+    ]
+  },
+  {
+    warbond: "Miscellaneous",
+    items: [
+      { type: "armoury", name: "DP-53 Savior of the Free", cape: "Will of the People" },
+      { type: "armoury", name: "TR-40 Gold Eagle", cape: "Foesmasher" },
+      { type: "armoury", name: "DP-00 Tactical", cape: "Foesmasher" },
+      { type: "armoury", name: "TR-117 Alpha Commander", cape: "Agent of Oblivion" },
+      { type: "armoury", name: "B-22 Model Citizen", cape: "Eye of Freedom" },
+
+      // { type: "armoury", name: "CE-81 Juggernaut",          cape: "" },
+      // { type: "armoury", name: "FS-34 Exterminator",        cape: "" },
+      // { type: "armoury", name: "FS-11 Executioner",         cape: "" },
+      // { type: "armoury", name: "CM-21 Trench Paramedic",    cape: "" },
+      // { type: "armoury", name: "B-08 Light Gunner",         cape: "" },
+      // { type: "armoury", name: "FS-61 Dreadnought",         cape: "" },
+
+      // { type: "armoury", name: "B-27 Fortified Commando",   cape: "" },
+      // { type: "armoury", name: "FS-38 Eradicator",          cape: "" },
+      // { type: "armoury", name: "B-24 Enforcer",             cape: "" },
+      // { type: "armoury", name: "CE-74 Breaker",             cape: "" },
+      // { type: "armoury", name: "SC-37 Legionnaire",         cape: "" },
+      // { type: "armoury", name: "SC-15 Drone Master",        cape: "" },
+
+      // { type: "armoury", name: "CM-17 Butcher",             cape: "" },
+      // { type: "armoury", name: "CE-67 Titan",               cape: "" },
+
+      // { type: "armoury", name: "CM-10 Clinician",           cape: "" },
+      // { type: "armoury", name: "FS-37 Ravager",             cape: "" },
+
+      // { type: "armoury", name: "CW-9 White Wolf",           cape: "" },
+      // { type: "armoury", name: "CE-64 Grenadier",           cape: "" },
+
+      // { type: "armoury", name: "PH-56 Jaguar",              cape: "" },
+      // { type: "armoury", name: "CE-101 Guerilla Gorilla",   cape: "" },
+
+      // { type: "armoury", name: "I-44 Salamander",           cape: "" },
+      { type: "armoury", name: "I-92 Fire Fighter", cape: "Order of the Venerated Ballot" },
+
+      // { type: "armoury", name: "AF-52 Lockdown",            cape: "" },
+      // { type: "armoury", name: "AF-91 Field Chemist",       cape: "" },
+
+      { type: "armoury", name: "UF-84 Doubt Killer", cape: "Cover of Darkness" },
+      { type: "armoury", name: "SR-64 Cinderblock", cape: "Stone-Wrought Perseverance" },
+      { type: "armoury", name: "IE-57 Hell-Bent", cape: "Vision of Freedom" },
+      { type: "armoury", name: "GS-11 Democracy's Deputy", cape: "Veil of the Valorous Vagabond" },
+      { type: "armoury", name: "RE-824 Bearer of the Standard", cape: "Seal of General Consensus" },
+      { type: "armoury", name: "BP-77 Grand Juror", cape: "Badge of Order" },
+
+      { type: "primary", name: "MP-98 Knight" },
+      { type: "primary", name: "R-2124 Constitution" },
+
+      { type: "sidearm", name: "CQC-30 Stun Baton" },
+      { type: "sidearm", name: "CQC-5 Combat Hatchet" },
+      { type: "sidearm", name: "P-92 Warrant" },
+    ]
+  },
   {
     warbond: "Helldivers x Killzone",
     items: [
@@ -249,91 +310,21 @@ const equipment = [
       { type: "primary", name: "StA-11 SMG" },
     ]
   },
-  {
-    warbond: "Miscellaneous",
-    items: [
-      { type: "armoury", name: "TR-40 Gold Eagle", cape: "Foesmasher" },
-      { type: "armoury", name: "DP-00 Tactical", cape: "Foesmasher" },
-      { type: "armoury", name: "TR-117 Alpha Commander", cape: "Agent of Oblivion" },
-      { type: "armoury", name: "B-22 Model Citizen", cape: "Eye of Freedom" },
-/* 
-      { type: "armoury", name: "SC-37 Legionnaire",
-                         cape: "" },
-      { type: "armoury", name: "SC-15 Drone Master",
-                         cape: "" },
-      { type: "armoury", name: "B-24 Enforcer",
-                         cape: "" },
-      { type: "armoury", name: "CE-74 Breaker",
-                         cape: "" },
-      { type: "armoury", name: "B-27 Fortified Commando",
-                         cape: "" },
-      { type: "armoury", name: "FS-38 Eradicator",
-                         cape: "" },
-      { type: "armoury", name: "B-08 Light Gunner",
-                         cape: "" },
-      { type: "armoury", name: "FS-61 Dreadnought",
-                         cape: "" },
-      { type: "armoury", name: "FS-11 Executioner",
-                         cape: "" },
-      { type: "armoury", name: "CM-21 Trench Paramedic",
-                         cape: "" },
-      { type: "armoury", name: "CE-81 Juggernaut",
-                         cape: "" },
-      { type: "armoury", name: "FS-34 Exterminator",
-                         cape: "" },
-      { type: "armoury", name: "CM-17 Butcher",
-                         cape: "" },
-      { type: "armoury", name: "CE-67 Titan",
-                         cape: "" },
-      { type: "armoury", name: "CM-10 Clinician",
-                         cape: "" },
-      { type: "armoury", name: "FS-37 Ravager",
-                         cape: "" },
-      { type: "armoury", name: "CW-9 White Wolf",
-                         cape: "" },
-      { type: "armoury", name: "CE-64 Grenadier",
-                         cape: "" },
-      { type: "armoury", name: "PH-56 Jaguar",
-                         cape: "" },
-      { type: "armoury", name: "CE-101 Guerilla Gorilla",
-                         cape: "" },
-      { type: "armoury", name: "I-44 Salamander",
-                         cape: "" },
-      { type: "armoury", name: "I-92 Fire Fighter",
-                         cape: "" },
-      { type: "armoury", name: "AF-52 Lockdown",
-                         cape: "" },
-      { type: "armoury", name: "AF-91 Field Chemist",
-                         cape: "" },
- */
-      { type: "armoury", name: "UF-84 Doubt Killer", cape: "Cover of Darkness" },
-      { type: "armoury", name: "SR-64 Cinderblock", cape: "Stone-Wrought Perseverance" },
-      { type: "armoury", name: "IE-57 Hell-Bent", cape: "Vision of Freedom" },
-      { type: "armoury", name: "GS-11 Democracy's Deputy", cape: "Veil of the Valorous Vagabond" },
-      // { type: "armoury", name: "RE-824 Bearer of the Standard", cape: "Seal of General Consensus" },
-
-
-      { type: "primary", name: "R-2124 Constitution" },
-
-      { type: "sidearm", name: "CQC-30 Stun Baton" },
-      { type: "sidearm", name: "CQC-5 Combat Hatchet" },
-    ]
-  },
 ];
 
 /*
-{
-  warbond: "",
-  items: [
-    { type: "armoury", name: "", cape: "" },
+  {
+    warbond: "",
+    items: [
+      { type: "armoury", name: "", cape: "" },
 
-    { type: "primary", name: "" },
+      { type: "primary", name: "" },
 
-    { type: "sidearm", name: "" },
+      { type: "sidearm", name: "" },
 
-    { type: "throwed", name: "" },
+      { type: "throwed", name: "" },
 
-    { type: "booster", name: "" }
-  ]
-},
+      { type: "booster", name: "" }
+    ]
+  },
 */

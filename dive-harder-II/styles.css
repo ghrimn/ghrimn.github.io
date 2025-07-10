@@ -30,7 +30,7 @@ img {
     align-items: center;
     flex-direction: column;
     position: relative;
-    width: 1600px;
+    width: 900px;
     height: 900px;
 }
 
@@ -42,19 +42,22 @@ img {
     z-index: -2;
     opacity: .9;
     background-image: url('img/mainContainerBG.webp');
+    background-position: center;
     background-size: cover;
-    border: 5px #fde802;
+    border: 5px #ffde21;
     border-style: double;
     border-radius: 5rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 #cookieBtn {
-    aspect-ratio: 1 / 1; /* makes it square */
-  }
+    aspect-ratio: 1 / 1;
+    /* makes it square */
+}
 
 .mainbtnContainer {
-    grid-template-columns: 0.5fr 2.5fr 3fr; /* proportional widths */
+    grid-template-columns: 0.5fr 2.5fr 3fr;
+    /* proportional widths */
     column-gap: 20px;
     display: grid;
     max-width: min(90%, 700px);
@@ -69,11 +72,11 @@ img {
     width: 100%;
     margin: 30px 0px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .buttonMain {
-    --color: #fde802;
+    --color: #ffde21;
     --gradient-color: rgba(253, 232, 2, .25);
     padding: .75rem;
     border: 5px solid var(--color);
@@ -85,7 +88,7 @@ img {
 }
 
 .buttonMain:hover {
-    background-color: #fde802;
+    background-color: #ffde21;
     color: #111;
     cursor: pointer;
 }
@@ -95,23 +98,30 @@ img {
 }
 
 .buttonMain.active {
-    background-color: #fde802;
+    background-color: #ffde21;
     color: #111;
-    outline: 1px solid #fde802;
+    outline: 1px solid #ffde21;
     outline-offset: 3px;
 }
 
 .resultBlock, .configBlock {
-    border-bottom: 3px solid #fde802;
+    border-bottom: 3px solid #ffde21;
     padding: 20px;
     text-align: center;
     flex-direction: column;
     background-color: #111;
     color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+#resultsContainer {
+    grid-auto-rows: minmax(0, 1fr);
+    height: 100%;
 }
 
 .configBlock.active {
-    background-color: #fde802;
+    background-color: #ffde21;
     color: #111;
 }
 
@@ -119,17 +129,13 @@ img {
     cursor: pointer;
 }
 
-.resultBlock:not(:has(.stratagem-ico img:hover)):hover {
-    background-color: #fde802;
+.resultBlock:not(:has(#stratagemBox:hover)):hover {
+    background-color: #ffde21;
     color: #111;
 }
 
 .resultBlock:not(:has(.stratagem-ico img:hover)):hover:active {
     transform: scale(0.98);
-}
-
-#difflvlResult {
-    display: none;
 }
 
 #armouryResult, #armouryConfig {
@@ -156,20 +162,12 @@ img {
     grid-area: 3 / 3 / 4 / 4;
 }
 
-#shotgunConfig {
-    grid-area: 4 / 3 / 5 / 4;
-}
-
 #missionConfig {
     grid-area: 4 / 1 / 5 / 2;
 }
 
-#difflvlConfig {
-    grid-area: 4 / 2 / 5 / 3;
-}
-
-#difflvlResult {
-    grid-area: 4 / 1 / 5 / 4;
+#warbondConfig {
+    grid-area: 4 / 2 / 5 / 4;
 }
 
 .block-icon {
@@ -182,13 +180,13 @@ img {
     line-height: 1.75rem;
 }
 
-/*.stratagemConfig {
+.stratagemConfig {
     display: flex;
     color: #fff;
     background-color: #111;
-    border-bottom: 3px solid #fde802;
+    border-bottom: 3px solid #ffde21;
     margin: 30px 0px;
-}*/
+}
 
 #offenseBlock, #offenseMission {
     grid-area: 2 / 1 / 3 / 2;
@@ -228,60 +226,56 @@ img {
     /*border: 2px solid white*/
 }
 
-#stratagemDiv, #armouryDiv {
+#stratagemDiv, #stratagemBox, #armouryDiv {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-start;
+    justify-content: space-evenly;
+}
+
+#armouryDiv {
+    width: 50%;
+}
+
+#stratagemDiv, #stratagemBox {
+    width: 100%;
+}
+
+#stratagemBox {
+    margin-top: 20px;
 }
 
 .stratagem-ico img {
-    margin: 20px 10px 5px;
     width: 5rem;
+    height: 5rem;
     box-sizing: border-box;
     border: 5px solid #4e4e4e;
     padding: 5px;
     background: #111;
 }
 
-.mission-ico img {
-    margin: 20px 10px 5px;
-    width: 5rem;
-    box-sizing: border-box;
-    padding: 5px;
+.mission-ico, .mission-ico img {
+    height: 100%;
 }
 
 .stratagem-ico img:hover {
-    border-color: #fde802;
+    border-color: #ffde21;
 }
 
 .stratagem-ico img:active {
     transform: scale(0.98);
 }
 
-#boosterDiv {
-    display: flex;
-    justify-content: center;
-}
-
-.booster-ico {
+.booster-ico img {
     display: flex;
     width: 5rem;
     height: 5rem;
     aspect-ratio: 1 / 1;
-    --padding: 5px;
-    padding: var(--padding);
-    margin: calc(20px - var(--padding)) 5px 5px 5px;
+    margin-top: 20px;
 }
 
 .equipment-ico img {
     height: 6rem;
-    margin: 20px 10px 5px;
+    margin-top: 20px;
 }
-
-
-
 
 .selectBlock {
     display: none;
@@ -302,9 +296,9 @@ img {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 1600px;
+    width: 900px;
     height: 900px;
-    margin-left: -800px;
+    margin-left: -450px;
     margin-top: -450px;
     display: flex;
     place-content: center;
@@ -320,8 +314,9 @@ img {
     z-index: -2;
     opacity: .9;
     background-image: url('img/mainContainerBG.webp');
+    background-position: center;
     background-size: cover;
-    border: 5px #fde802;
+    border: 5px #ffde21;
     border-style: double;
     border-radius: 5rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -399,4 +394,55 @@ img {
 /* width */
 ::-webkit-scrollbar {
     display: none;
+}
+
+.civtoolToggle {
+    width: 40px;
+    height: 60px;
+    border: 5px solid #4e4e4e;
+    position: relative;
+    background: #111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.civtoolToggle.on {
+    border-color: #ffde21;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 33.33%;
+    border: 2.5px solid #111;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.civtoolToggle.off .slider {
+    background: #4e4e4e;
+    transform: translateY(200%);
+
+}
+
+.civtoolToggle.on .slider {
+    background: #ffde21;
+    transform: translateY(0%);
+
+}
+
+#civtoolConfig {
+    display: flex;
+    justify-content: center;
+}
+
+.placeholder {
+    display: flex;
+    height: 100%;
+}
+
+.placeholder i {
+    display: flex;
+    font-size: xxx-large;
+    align-items: center;
 }
